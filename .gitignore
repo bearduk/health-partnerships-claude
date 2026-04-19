@@ -1,0 +1,19 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor / IDE
+.cursor/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local env (if you add tooling later)
+.env
+.env.local
+.env.*.local

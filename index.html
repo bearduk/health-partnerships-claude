@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keele Health Partners</title>
+  <meta name="description" content="Keele Health Partners brings together health, academic, community, and business partners to turn research into real-world health impact across Staffordshire and the North Midlands." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --navy:        #0d1f35;
+      --navy-mid:    #162b47;
+      --navy-light:  #1e3a5f;
+      --teal:        #1a9b8c;
+      --teal-light:  #22c5b2;
+      --teal-pale:   #e8f7f5;
+      --warm-white:  #f7f6f2;
+      --off-white:   #efefeb;
+      --sand:        #e8e4dc;
+      --text-dark:   #0d1f35;
+      --text-mid:    #3a4a5c;
+      --text-light:  #6b7a8d;
+      --accent:      #e8622a;
+      --accent-soft: #fff0ea;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+
+      --shadow-soft: 0 2px 20px rgba(13,31,53,0.08);
+      --shadow-mid:  0 8px 40px rgba(13,31,53,0.14);
+      --shadow-lift: 0 20px 60px rgba(13,31,53,0.18);
+
+      --section-pad: clamp(64px, 9vw, 120px);
+      --content-max: 1180px;
+      --nav-h: 72px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--warm-white);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul, ol { list-style: none; }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ============================================================
+       SKIP LINK
+       ============================================================ */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: var(--teal); color: #fff;
+      padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+      font-weight: 600; z-index: 10000;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ============================================================
+       LAYOUT HELPERS
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: var(--content-max);
+      margin-inline: auto;
+      padding-inline: clamp(20px, 5vw, 48px);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--teal);
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      color: var(--navy);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-sub {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      max-width: 640px;
+    }
+
+    .section-header { margin-bottom: clamp(40px, 6vw, 64px); }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.8rem 1.75rem;
+      border-radius: 100px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+    .btn svg { transition: transform 0.2s ease; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(26,155,140,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--teal-light);
+      box-shadow: 0 6px 24px rgba(26,155,140,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-primary:focus-visible {
+      outline: 3px solid var(--teal-light);
+      outline-offset: 3px;
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.55);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.85);
+      transform: translateY(-1px);
+    }
+    .btn-outline-white:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .btn-outline-navy {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .btn-outline-navy:hover {
+      background: var(--navy);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-outline-navy:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 3px;
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .nav.scrolled {
+      background: rgba(13,31,53,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.07);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name { font-size: 1rem; font-weight: 400; color: #fff; }
+    .nav-logo-sub  { font-family: var(--font-body); font-size: 0.68rem; font-weight: 400; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--teal-light);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 4px; border-radius: 2px; }
+
+    .nav-cta { margin-left: 1rem; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+    }
+    .nav-hamburger:focus-visible { outline: 2px solid var(--teal-light); }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: var(--navy);
+      padding: 1.5rem clamp(20px,5vw,48px) 2rem;
+      z-index: 999;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a {
+      display: block;
+      padding: 0.85rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover { color: #fff; }
+    .nav-mobile .btn { margin-top: 1.25rem; width: 100%; justify-content: center; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: clamp(64px, 10vw, 100px);
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-video-wrap video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    /* Fallback gradient shown when video not loaded */
+    .hero-video-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0d1f35 0%, #1e3a5f 40%, #0f3040 100%);
+      z-index: 1;
+    }
+    /* Overlay on top of video */
+    .hero-video-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,31,53,0.92) 0%,
+        rgba(13,31,53,0.6) 45%,
+        rgba(13,31,53,0.35) 100%
+      );
+      z-index: 2;
+    }
+    .hero-video-wrap video { position: relative; z-index: 0; }
+
+    /* Noise texture overlay */
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(26,155,140,0.18);
+      border: 1px solid rgba(34,197,178,0.35);
+      color: var(--teal-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+      backdrop-filter: blur(4px);
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-kicker-dot {
+      width: 6px; height: 6px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6.5vw, 5rem);
+      line-height: 1.07;
+      color: #fff;
+      max-width: 780px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal-light);
+    }
+
+    .hero-intro {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.72;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: clamp(20px,5vw,48px);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeIn 1s 0.8s ease both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+      animation: scrollDrop 2s ease infinite;
+    }
+    @keyframes scrollDrop {
+      0%, 100% { transform: scaleY(1); opacity: 0.4; }
+      50% { transform: scaleY(1.3); opacity: 0.8; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ============================================================
+       MISSION & IMPACT
+       ============================================================ */
+    .mission {
+      padding: var(--section-pad) 0;
+      background: var(--warm-white);
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .mission-body p {
+      font-size: 1.0625rem;
+      line-height: 1.78;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+    }
+    .mission-body p:last-child { margin-bottom: 0; }
+
+    .impact-goals { margin-top: 0; }
+
+    .impact-goals-heading {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .goal-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      background: #fff;
+      border: 1px solid var(--sand);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .goal-card:hover {
+      border-color: var(--teal);
+      box-shadow: var(--shadow-soft);
+      transform: translateX(4px);
+    }
+
+    .goal-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--teal-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .goal-icon svg { color: var(--teal); }
+
+    .goal-text {}
+    .goal-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .goal-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--text-light);
+    }
+
+    /* ============================================================
+       RESEARCH AREAS
+       ============================================================ */
+    .research {
+      padding: var(--section-pad) 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,155,140,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .research::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,155,140,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .research .section-label { color: var(--teal-light); }
+    .research .section-label::before { background: var(--teal-light); }
+    .research .section-heading { color: #fff; }
+    .research .section-sub { color: rgba(255,255,255,0.6); }
+
+    .research-intro-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: clamp(40px,6vw,64px);
+    }
+
+    .nhs-note {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      font-style: italic;
+      line-height: 1.6;
+      border-left: 2px solid rgba(26,155,140,0.4);
+      padding-left: 1rem;
+      align-self: center;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .research-accordion {
+      background: rgba(255,255,255,0.04);
+      transition: background 0.25s;
+    }
+    .research-accordion:hover,
+    .research-accordion.open {
+      background: rgba(26,155,140,0.1);
+    }
+
+    .research-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 2rem;
+      text-align: left;
+      cursor: pointer;
+    }
+    .research-trigger:focus-visible {
+      outline: 2px solid var(--teal-light);
+      outline-offset: -2px;
+    }
+
+    .research-trigger-left { display: flex; align-items: center; gap: 1rem; }
+
+    .research-num {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      color: var(--teal-light);
+      opacity: 0.6;
+      width: 20px;
+      flex-shrink: 0;
+    }
+
+    .research-trigger-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .research-chevron {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background 0.2s;
+    }
+    .research-accordion.open .research-chevron {
+      transform: rotate(45deg);
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+    .research-chevron svg { color: rgba(255,255,255,0.6); }
+    .research-accordion.open .research-chevron svg { color: #fff; }
+
+    .research-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .research-panel.open { max-height: 300px; }
+    .research-panel-inner {
+      padding: 0 2rem 2rem;
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.62);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 1.25rem;
+    }
+
+    /* ============================================================
+       PARTNERS
+       ============================================================ */
+    .partners {
+      padding: var(--section-pad) 0;
+      background: var(--warm-white);
+      overflow: hidden;
+    }
+
+    .partners-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: clamp(40px,6vw,56px);
+      flex-wrap: wrap;
+    }
+
+    .partner-track-wrap {
+      position: relative;
+      overflow: hidden;
+      margin-inline: calc(-1 * clamp(20px, 5vw, 48px));
+    }
+    .partner-track-wrap::before,
+    .partner-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .partner-track-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--warm-white), transparent);
+    }
+    .partner-track-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--warm-white), transparent);
+    }
+
+    .partner-track {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem clamp(20px, 5vw, 48px);
+      animation: trackScroll 28s linear infinite;
+      width: max-content;
+    }
+    .partner-track:hover { animation-play-state: paused; }
+
+    @keyframes trackScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .partner-logo-tile {
+      flex-shrink: 0;
+      width: 180px; height: 80px;
+      background: #fff;
+      border: 1px solid var(--sand);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .partner-logo-tile:hover {
+      border-color: var(--teal);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .partner-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-align: center;
+    }
+    .partner-placeholder-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--sand);
+    }
+    .partner-placeholder span {
+      font-size: 0.62rem;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       PUBLIC PARTNERSHIPS & TRAINING (HOLDING)
+       ============================================================ */
+    .holding-grid {
+      padding: var(--section-pad) 0;
+      background: var(--off-white);
+    }
+    .holding-grid .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .holding-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: clamp(32px, 5vw, 56px);
+      border: 1px solid var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+    .holding-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(to right, var(--teal), var(--teal-light));
+    }
+
+    .holding-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      background: var(--off-white);
+      border: 1px solid var(--sand);
+      border-radius: 100px;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .holding-card .section-heading {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+    .holding-card p {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 1.75rem;
+    }
+
+    /* ============================================================
+       NEWS
+       ============================================================ */
+    .news {
+      padding: var(--section-pad) 0;
+      background: var(--warm-white);
+    }
+
+    .news-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: clamp(32px,5vw,48px);
+      flex-wrap: wrap;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .news-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--sand);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .news-card:hover {
+      box-shadow: var(--shadow-mid);
+      transform: translateY(-4px);
+    }
+
+    .news-card-img {
+      aspect-ratio: 16/9;
+      background: var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+    .news-card-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .news-card-img-placeholder.teal   { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%); }
+    .news-card-img-placeholder.navy   { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
+    .news-card-img-placeholder.accent { background: linear-gradient(135deg, #1e4d6b 0%, var(--navy-mid) 100%); }
+
+    .news-card-img-placeholder svg { opacity: 0.25; color: #fff; }
+
+    .news-card-tag {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: rgba(13,31,53,0.75);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    .news-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+
+    .news-card-meta {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-bottom: 0.6rem;
+    }
+
+    .news-card-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      line-height: 1.35;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      flex: 1;
+    }
+
+    .news-card-excerpt {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--text-mid);
+      margin-bottom: 1.25rem;
+    }
+
+    .news-card-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .news-card-link:hover { color: var(--teal-light); gap: 10px; }
+
+    .news-placeholder-note {
+      margin-top: 2rem;
+      padding: 1rem 1.25rem;
+      background: var(--teal-pale);
+      border: 1px solid rgba(26,155,140,0.2);
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* ============================================================
+       TEAM
+       ============================================================ */
+    .team {
+      padding: var(--section-pad) 0;
+      background: var(--off-white);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: clamp(32px,5vw,48px);
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--sand);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .team-card:hover {
+      box-shadow: var(--shadow-mid);
+      transform: translateY(-3px);
+    }
+
+    .team-card-photo {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--teal) 100%);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+
+    .team-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset: 0;
+    }
+    .team-photo-placeholder svg { opacity: 0.2; color: #fff; }
+
+    .team-card-body { padding: 1.5rem; }
+    .team-card-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .team-card-role {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.75rem;
+    }
+    .team-card-bio {
+      font-size: 0.875rem;
+      line-height: 1.68;
+      color: var(--text-mid);
+    }
+    .team-card-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      transition: color 0.2s;
+    }
+    .team-card-email:hover { color: var(--teal); }
+    .team-card-email:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+    .team-placeholder-note {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact {
+      padding: var(--section-pad) 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -100px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,155,140,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .contact .section-label { color: var(--teal-light); }
+    .contact .section-label::before { background: var(--teal-light); }
+    .contact .section-heading { color: #fff; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(40px,6vw,80px);
+      align-items: start;
+    }
+
+    .contact-left {}
+    .contact-intro {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-ways { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-way {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-way:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(26,155,140,0.35);
+    }
+    .contact-way-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(26,155,140,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-way-icon svg { color: var(--teal-light); }
+    .contact-way-text {}
+    .contact-way-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.15rem;
+    }
+    .contact-way-value {
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+
+    .contact-right {}
+
+    .ms-form-wrapper {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+    }
+
+    .ms-form-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    /* Placeholder form (MS Form embed area) */
+    .form-placeholder {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.03em;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-field select option { background: var(--navy); color: #fff; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--teal);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 0 0 3px rgba(26,155,140,0.2);
+    }
+    .form-field textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .form-privacy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+    .form-privacy a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+    .form-privacy a:hover { color: rgba(255,255,255,0.75); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background: #080f1a;
+      padding: clamp(40px,5vw,64px) 0 clamp(24px,3vw,32px);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: clamp(32px,4vw,48px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: clamp(24px,3vw,32px);
+    }
+
+    .footer-brand {}
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .footer-logo-mark {
+      width: 32px; height: 32px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: #fff;
+    }
+    .footer-logo-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .footer-brand-desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.38);
+      max-width: 300px;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-keele-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.22);
+      border-left: 2px solid rgba(255,255,255,0.1);
+      padding-left: 0.75rem;
+      line-height: 1.6;
+    }
+    .footer-keele-note a { color: rgba(255,255,255,0.3); text-decoration: underline; }
+    .footer-keele-note a:hover { color: rgba(255,255,255,0.55); }
+
+    .footer-col-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-links a:focus-visible { outline: 1px solid var(--teal-light); outline-offset: 3px; border-radius: 2px; }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-legal a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.55); }
+
+    /* ============================================================
+       COOKIE BANNER (UI PLACEHOLDER)
+       ============================================================ */
+    .cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 3rem);
+      max-width: 760px;
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      z-index: 2000;
+      box-shadow: var(--shadow-lift);
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .cookie-banner.hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+      pointer-events: none;
+    }
+    .cookie-text {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .cookie-text a { color: var(--teal-light); text-decoration: underline; }
+    .cookie-actions { display: flex; gap: 0.75rem; flex-shrink: 0; flex-wrap: wrap; }
+    .cookie-accept {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: background 0.2s;
+    }
+    .cookie-accept:hover { background: var(--teal-light); }
+    .cookie-accept:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
+    .cookie-decline {
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.6rem 1.25rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.2s;
+    }
+    .cookie-decline:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.35); }
+    .cookie-decline:focus-visible { outline: 2px solid rgba(255,255,255,0.5); outline-offset: 3px; }
+
+    /* ============================================================
+       SCROLL REVEAL
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .mission-grid { grid-template-columns: 1fr; }
+      .research-intro-row { grid-template-columns: 1fr; }
+      .research-grid { grid-template-columns: 1fr; }
+      .holding-grid .container { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .news-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .partners-header-row { flex-direction: column; align-items: flex-start; }
+      .news-header-row { flex-direction: column; align-items: flex-start; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-scroll-hint { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip link -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" aria-label="Keele Health Partners — home">
+        <div class="nav-logo-mark" aria-hidden="true">KHP</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Keele Health Partners</span>
+          <span class="nav-logo-sub">Staffordshire &amp; North Midlands</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#mission">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+
+      <a href="#contact" class="btn btn-primary nav-cta">Work with us</a>
+
+      <button class="nav-hamburger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-mobile" id="mobile-nav" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#mission" class="mobile-nav-link">About</a>
+    <a href="#research" class="mobile-nav-link">Research</a>
+    <a href="#partners" class="mobile-nav-link">Partners</a>
+    <a href="#news" class="mobile-nav-link">News</a>
+    <a href="#team" class="mobile-nav-link">Team</a>
+    <a href="#contact" class="btn btn-primary mobile-nav-link">Work with us</a>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-video-wrap" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="assets/video/hero-lab-robotics.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-noise" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <div class="hero-kicker" aria-hidden="true">
+          <span class="hero-kicker-dot"></span>
+          Health Innovation · Staffordshire &amp; North Midlands
+        </div>
+        <h1 id="hero-heading">
+          Turning research<br>into <em>real-world</em><br>health impact
+        </h1>
+        <p class="hero-intro">
+          Keele Health Partners brings together the NHS, academia, business,
+          and community to accelerate discoveries into care — building healthier
+          communities and a stronger regional health economy.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            Work with us
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#research" class="btn btn-outline-white">
+            Our research areas
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- MISSION & IMPACT -->
+    <section class="mission" id="mission" aria-labelledby="mission-heading">
+      <div class="container">
+        <div class="mission-grid">
+          <div class="mission-body reveal">
+            <span class="section-label">About us</span>
+            <h2 class="section-heading" id="mission-heading">
+              A new kind of health partnership for the North Midlands
+            </h2>
+            <p>
+              Keele Health Partners brings together health, academic, community, and business partners to tackle some of the biggest health challenges facing Staffordshire and the North Midlands. Our goal is to turn great ideas and research into real-world solutions that make a positive difference to people's lives.
+            </p>
+            <p>
+              By working together, we can speed up the journey from discovery to delivery — making healthcare more accessible and effective at supporting those in need.
+            </p>
+            <p>
+              KHP creates opportunities for joint funding, shared facilities, and large-scale programmes, building on Keele's research strengths and ensuring that what we do is not only excellent but also impactful — benefiting patients, communities, and the wider health and care system while supporting regional growth.
+            </p>
+          </div>
+
+          <div class="impact-goals reveal reveal-delay-2">
+            <p class="impact-goals-heading">Our five civic impact goals</p>
+
+            <div class="goal-card">
+              <div class="goal-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <div class="goal-text">
+                <div class="goal-name">Equitable Access</div>
+                <div class="goal-desc">Making sure the benefits of health and care research reach everyone in our communities.</div>
+              </div>
+            </div>
+
+            <div class="goal-card">
+              <div class="goal-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+              </div>
+              <div class="goal-text">
+                <div class="goal-name">Impactful Research &amp; Innovation</div>
+                <div class="goal-desc">Delivering high-quality, co-produced research with evidence-based innovation at the heart of care.</div>
+              </div>
+            </div>
+
+            <div class="goal-card">
+              <div class="goal-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <div class="goal-text">
+                <div class="goal-name">Accelerated Translation</div>
+                <div class="goal-desc">Moving discoveries into practice quickly so they can be adopted across the system.</div>
+              </div>
+            </div>
+
+            <div class="goal-card">
+              <div class="goal-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"/></svg>
+              </div>
+              <div class="goal-text">
+                <div class="goal-name">Workforce &amp; Regional Prosperity</div>
+                <div class="goal-desc">Developing skills, supporting clinical–academic careers, and growing the local economy through health innovation.</div>
+              </div>
+            </div>
+
+            <div class="goal-card">
+              <div class="goal-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+              </div>
+              <div class="goal-text">
+                <div class="goal-name">Sustainable Commercial Partnerships</div>
+                <div class="goal-desc">Building new collaborations through working with sector-leading organisations.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH AREAS -->
+    <section class="research" id="research" aria-labelledby="research-heading">
+      <div class="container">
+        <div class="research-intro-row">
+          <div class="reveal">
+            <span class="section-label">Research areas</span>
+            <h2 class="section-heading" id="research-heading">
+              Where we focus our work
+            </h2>
+          </div>
+          <p class="nhs-note reveal reveal-delay-1">
+            Our work aligns with the NHS Long Term Plan — shifting care closer to home, embracing digital technology, and focusing on prevention.
+          </p>
+        </div>
+
+        <div class="research-grid reveal reveal-delay-1" role="list">
+
+          <div class="research-accordion" role="listitem">
+            <button class="research-trigger" aria-expanded="false" aria-controls="panel-mental-health">
+              <span class="research-trigger-left">
+                <span class="research-num" aria-hidden="true">01</span>
+                <span class="research-trigger-title">Mental Health</span>
+              </span>
+              <span class="research-chevron" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="research-panel" id="panel-mental-health" role="region">
+              <div class="research-panel-inner">
+                Supporting mental wellbeing through research, digital tools, and community engagement. We want to create practical solutions that help people at every stage of life — from early intervention through to long-term management and recovery.
+              </div>
+            </div>
+          </div>
+
+          <div class="research-accordion" role="listitem">
+            <button class="research-trigger" aria-expanded="false" aria-controls="panel-life-sciences">
+              <span class="research-trigger-left">
+                <span class="research-num" aria-hidden="true">02</span>
+                <span class="research-trigger-title">Life Sciences &amp; Precision Medicine</span>
+              </span>
+              <span class="research-chevron" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="research-panel" id="panel-life-sciences" role="region">
+              <div class="research-panel-inner">
+                Driving biomedical research — including neuroscience, pharmacology, and bioengineering — and turning discoveries into personalised, preventative care. We work closely with industry partners to bring innovations from bench to bedside.
+              </div>
+            </div>
+          </div>
+
+          <div class="research-accordion" role="listitem">
+            <button class="research-trigger" aria-expanded="false" aria-controls="panel-ageing">
+              <span class="research-trigger-left">
+                <span class="research-num" aria-hidden="true">03</span>
+                <span class="research-trigger-title">Healthy Ageing &amp; Long-Term Conditions</span>
+              </span>
+              <span class="research-chevron" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="research-panel" id="panel-ageing" role="region">
+              <div class="research-panel-inner">
+                Building on Keele's expertise in musculoskeletal health and primary care to find better ways to support ageing populations and manage chronic conditions in community settings — improving quality of life and reducing system pressure.
+              </div>
+            </div>
+          </div>
+
+          <div class="research-accordion" role="listitem">
+            <button class="research-trigger" aria-expanded="false" aria-controls="panel-digital">
+              <span class="research-trigger-left">
+                <span class="research-num" aria-hidden="true">04</span>
+                <span class="research-trigger-title">Technology, Digital Health &amp; Data Innovation</span>
+              </span>
+              <span class="research-chevron" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </span>
+            </button>
+            <div class="research-panel" id="panel-digital" role="region">
+              <div class="research-panel-inner">
+                Using novel technology, data, AI, and digital platforms to improve care, empower self-management, and free up clinical time. We work closely with Keele's Digital Society Institute and local tech businesses to develop and deploy real-world solutions.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="partners" id="partners" aria-labelledby="partners-heading">
+      <div class="container">
+        <div class="partners-header-row">
+          <div class="reveal">
+            <span class="section-label">Our partners</span>
+            <h2 class="section-heading" id="partners-heading">
+              Built on genuine<br>collaboration
+            </h2>
+          </div>
+          <p class="section-sub reveal reveal-delay-1">
+            KHP brings together NHS trusts, integrated care boards, commercial organisations, community groups, and academic institutions — united by a shared commitment to better health outcomes.
+          </p>
+        </div>
+      </div>
+
+      <div class="partner-track-wrap" aria-label="Partner organisations — placeholder logos" role="region">
+        <div class="partner-track" aria-hidden="true">
+          <!-- First set -->
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:80px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:50px;"></div><span>NHS Trust</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:70px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:90px;"></div><span>ICB</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:100px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>University</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:65px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:85px;"></div><span>Industry</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:90px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:55px;"></div><span>NHS Trust</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:75px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:95px;"></div><span>Community</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:85px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>Industry</span></div></div>
+          <!-- Duplicated for seamless loop -->
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:80px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:50px;"></div><span>NHS Trust</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:70px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:90px;"></div><span>ICB</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:100px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>University</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:65px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:85px;"></div><span>Industry</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:90px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:55px;"></div><span>NHS Trust</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:75px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:95px;"></div><span>Community</span></div></div>
+          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:85px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>Industry</span></div></div>
+        </div>
+      </div>
+
+      <div class="container" style="margin-top: 1.5rem;">
+        <p style="font-size:0.8rem; color: var(--text-light); font-style: italic;">
+          ⚠ Partner logos are placeholders. Confirmed partner identities and logos will be added before production release.
+        </p>
+      </div>
+    </section>
+
+    <!-- PUBLIC PARTNERSHIPS & TRAINING (HOLDING) -->
+    <section class="holding-grid" aria-label="Public partnerships and training">
+      <div class="container">
+
+        <div class="holding-card reveal" id="public-partnerships">
+          <span class="holding-badge">Coming soon</span>
+          <span class="section-label">Public partnerships</span>
+          <h2 class="section-heading">Involving communities in our work</h2>
+          <p>
+            Meaningful public involvement is central to everything KHP does. We're committed to co-designing our research priorities and programmes with patients, carers, and community organisations — ensuring our work reflects the real needs of people across Staffordshire and the North Midlands.
+          </p>
+          <p>
+            More information about our public and community engagement opportunities will be published here shortly. If you represent a community organisation or would like to get involved, please get in touch.
+          </p>
+          <a href="#contact" class="btn btn-outline-navy">
+            Get in touch
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="holding-card reveal reveal-delay-2" id="training">
+          <span class="holding-badge">Coming soon</span>
+          <span class="section-label">Training &amp; development</span>
+          <h2 class="section-heading">Building the health workforce of tomorrow</h2>
+          <p>
+            KHP is developing a suite of training and professional development opportunities for clinical and academic staff across the region — from workforce development programmes to clinical–academic fellowships and research skills training.
+          </p>
+          <p>
+            Details of our training offer will be published here as programmes are confirmed. To register your interest or discuss a potential training partnership, please contact us.
+          </p>
+          <a href="#contact" class="btn btn-outline-navy">
+            Register interest
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="news" id="news" aria-labelledby="news-heading">
+      <div class="container">
+        <div class="news-header-row">
+          <div class="reveal">
+            <span class="section-label">Latest news</span>
+            <h2 class="section-heading" id="news-heading">From across the partnership</h2>
+          </div>
+          <a href="https://www.keele.ac.uk/health/facultynews/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-navy reveal reveal-delay-1">
+            All news
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="news-grid">
+
+          <article class="news-card reveal">
+            <div class="news-card-img">
+              <div class="news-card-img-placeholder teal">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              </div>
+              <span class="news-card-tag">Research</span>
+            </div>
+            <div class="news-card-body">
+              <p class="news-card-meta">15 April 2025</p>
+              <h3 class="news-card-title">New musculoskeletal research programme launches across Staffordshire primary care network</h3>
+              <p class="news-card-excerpt">A major new programme aimed at improving outcomes for patients with long-term musculoskeletal conditions is set to launch across twelve GP practices this spring.</p>
+              <a href="https://www.keele.ac.uk/health/facultynews/" class="news-card-link" target="_blank" rel="noopener noreferrer">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card reveal reveal-delay-1">
+            <div class="news-card-img">
+              <div class="news-card-img-placeholder navy">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <span class="news-card-tag">Partnership</span>
+            </div>
+            <div class="news-card-body">
+              <p class="news-card-meta">3 March 2025</p>
+              <h3 class="news-card-title">Keele secures NIHR funding to expand mental health digital intervention research</h3>
+              <p class="news-card-excerpt">Keele University has been awarded significant NIHR funding to develop and evaluate a suite of digital mental health tools co-designed with service users across the region.</p>
+              <a href="https://www.keele.ac.uk/health/facultynews/" class="news-card-link" target="_blank" rel="noopener noreferrer">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card reveal reveal-delay-2">
+            <div class="news-card-img">
+              <div class="news-card-img-placeholder accent">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <span class="news-card-tag">Community</span>
+            </div>
+            <div class="news-card-body">
+              <p class="news-card-meta">18 February 2025</p>
+              <h3 class="news-card-title">Health innovation event brings together 80 regional partners to shape KHP priorities</h3>
+              <p class="news-card-excerpt">Over 80 representatives from NHS trusts, local government, industry, and the voluntary sector came together to co-develop Keele Health Partners' strategic research priorities.</p>
+              <a href="https://www.keele.ac.uk/health/facultynews/" class="news-card-link" target="_blank" rel="noopener noreferrer">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="news-placeholder-note" role="note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          News cards above are placeholder content. Final news items will be sourced from KHP's own news feed before production launch.
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team" id="team" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">Our team</span>
+          <h2 class="section-heading" id="team-heading">The people behind KHP</h2>
+          <p class="section-sub">Our team brings together expertise from across health research, clinical practice, and strategic partnership development.</p>
+        </div>
+
+        <div class="team-grid">
+
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-card-photo">
+              <div class="team-photo-placeholder" aria-hidden="true">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+            <div class="team-card-body">
+              <h3 class="team-card-name">Christian [Surname TBC]</h3>
+              <p class="team-card-role">[Role / Title — placeholder]</p>
+              <p class="team-card-bio">
+                [Bio text to be supplied. Placeholder content only — final bio, role title, and headshot required before production launch.]
+              </p>
+              <a href="mailto:placeholder@keele.ac.uk" class="team-card-email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Contact Christian
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="team-placeholder-note">
+          Further team members will be added as KHP's team grows. Headshots, final bios, and contact details required before launch.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div class="contact-left reveal">
+            <span class="section-label">Work with us</span>
+            <h2 class="section-heading" id="contact-heading">
+              Ready to build something together?
+            </h2>
+            <p class="contact-intro">
+              Whether you're an NHS organisation, a business with a health innovation idea, a community group, or a researcher looking to collaborate — we'd love to hear from you.
+            </p>
+
+            <div class="contact-ways">
+              <div class="contact-way">
+                <div class="contact-way-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="contact-way-text">
+                  <div class="contact-way-label">Email</div>
+                  <div class="contact-way-value">[khp@keele.ac.uk — placeholder]</div>
+                </div>
+              </div>
+
+              <div class="contact-way">
+                <div class="contact-way-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div class="contact-way-text">
+                  <div class="contact-way-label">Based at</div>
+                  <div class="contact-way-value">Keele University, Staffordshire ST5 5BG</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right reveal reveal-delay-2">
+            <div class="ms-form-wrapper">
+              <p class="ms-form-note">
+                ⚠ This form is a design placeholder. Final implementation will use a Microsoft Form embed. Submission workflow and destination to be confirmed.
+              </p>
+
+              <form class="form-placeholder" action="#" aria-label="Partnership enquiry form" onsubmit="return false;">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="f-name">Your name</label>
+                    <input type="text" id="f-name" name="name" autocomplete="name" placeholder="Full name" />
+                  </div>
+                  <div class="form-field">
+                    <label for="f-org">Organisation</label>
+                    <input type="text" id="f-org" name="org" autocomplete="organization" placeholder="Organisation name" />
+                  </div>
+                </div>
+
+                <div class="form-field">
+                  <label for="f-email">Email address</label>
+                  <input type="email" id="f-email" name="email" autocomplete="email" placeholder="your@email.ac.uk" />
+                </div>
+
+                <div class="form-field">
+                  <label for="f-interest">Area of interest</label>
+                  <select id="f-interest" name="interest">
+                    <option value="" disabled selected>Select a research area</option>
+                    <option>Mental Health</option>
+                    <option>Life Sciences &amp; Precision Medicine</option>
+                    <option>Healthy Ageing &amp; Long-Term Conditions</option>
+                    <option>Technology, Digital Health &amp; Data Innovation</option>
+                    <option>Training &amp; Workforce Development</option>
+                    <option>Community &amp; Public Partnerships</option>
+                    <option>General enquiry</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="f-message">Message</label>
+                  <textarea id="f-message" name="message" placeholder="Tell us about your organisation and what you're hoping to explore with KHP..."></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <p class="form-privacy">
+                    Your data will be handled in accordance with our <a href="#" aria-label="Privacy policy (placeholder link)">privacy policy</a>.
+                  </p>
+                  <button type="submit" class="btn btn-primary">
+                    Send enquiry
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-logo" aria-label="Keele Health Partners">
+            <div class="footer-logo-mark" aria-hidden="true">KHP</div>
+            <span class="footer-logo-name">Keele Health Partners</span>
+          </div>
+          <p class="footer-brand-desc">
+            Turning health research into real-world impact — across Staffordshire and the North Midlands.
+          </p>
+          <p class="footer-keele-note">
+            An initiative of <a href="https://www.keele.ac.uk" target="_blank" rel="noopener noreferrer">Keele University</a>.<br>
+            Keele University, Staffordshire, ST5 5BG.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Navigate</p>
+          <ul class="footer-links" role="list">
+            <li><a href="#mission">About KHP</a></li>
+            <li><a href="#research">Research areas</a></li>
+            <li><a href="#partners">Our partners</a></li>
+            <li><a href="#public-partnerships">Public partnerships</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#team">Our team</a></li>
+            <li><a href="#contact">Work with us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Legal &amp; compliance</p>
+          <ul class="footer-links" role="list">
+            <li><a href="#" aria-label="Privacy policy (placeholder)">Privacy policy</a></li>
+            <li><a href="#" aria-label="Cookie policy (placeholder)">Cookie policy</a></li>
+            <li><a href="#" aria-label="Accessibility statement (placeholder)">Accessibility statement</a></li>
+            <li><a href="https://www.keele.ac.uk" target="_blank" rel="noopener noreferrer">Keele University</a></li>
+          </ul>
+          <p style="margin-top: 1.5rem; font-size: 0.72rem; color: rgba(255,255,255,0.18); font-style: italic; line-height: 1.6;">
+            ⚠ Legal footer links are placeholders. Privacy policy, cookie compliance tooling, and accessibility statement required before production launch.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © <span id="year"></span> Keele Health Partners. All rights reserved.
+        </p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+          <a href="#">Accessibility</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       COOKIE BANNER (UI PLACEHOLDER)
+       ============================================================ -->
+  <div class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" id="cookie-banner">
+    <p class="cookie-text">
+      We use cookies to improve your experience on this site. By continuing, you agree to our use of cookies.
+      <a href="#" aria-label="Cookie policy (placeholder)">Learn more</a>.
+      <em style="display:block; margin-top:0.25rem; opacity:0.6; font-size:0.75rem;">⚠ UI placeholder — replace with a real consent platform such as Cookiebot before production launch.</em>
+    </p>
+    <div class="cookie-actions">
+      <button class="cookie-decline" id="cookie-decline">Decline</button>
+      <button class="cookie-accept" id="cookie-accept">Accept all</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // ── Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ── Nav scroll state
+    const nav = document.querySelector('.nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ── Hamburger / mobile nav
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileNav.setAttribute('aria-hidden', !open);
+    });
+    // Close on mobile link click
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    // ── Research accordions
+    document.querySelectorAll('.research-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const accordion = trigger.closest('.research-accordion');
+        const panelId = trigger.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId);
+        const isOpen = accordion.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.research-accordion').forEach(a => {
+          a.classList.remove('open');
+          a.querySelector('.research-trigger').setAttribute('aria-expanded', 'false');
+          a.querySelector('.research-panel').classList.remove('open');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          accordion.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          panel.classList.add('open');
+        }
+      });
+    });
+
+    // ── Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ── Cookie banner
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+    const dismiss = () => banner.classList.add('hidden');
+    acceptBtn.addEventListener('click', dismiss);
+    declineBtn.addEventListener('click', dismiss);
+  </script>
+
+</body>
+</html>
