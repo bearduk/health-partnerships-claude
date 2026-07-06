@@ -1,15 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
+  <!-- OneTrust Cookies Consent Notice start -->
+  <!-- Note: autoblocking is not on; OneTrustGroupsUpdated is pushed to dataLayer for GTM -->
+  <script
+    src="https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js"
+    type="text/javascript"
+    charset="UTF-8"
+    data-domain-script="1ccdea98-8961-4ffc-91e0-ae57e6d8c0e3"></script>
+  <script type="text/javascript">
+  function OptanonWrapper() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'OneTrustGroupsUpdated' });
+  }
+  if (/^localhost$|^127\.0\.0\.1$/.test(location.hostname)) {
+    window.OptanonWrapper = function () {};
+  }
+  </script>
+  <!-- OneTrust Cookies Consent Notice end -->
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WH5D65B');</script>
+  <!-- End Google Tag Manager -->
+
   <script>document.documentElement.classList.remove('no-js');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keele Health Partners</title>
+  <!-- Production URL: https://www.keele.ac.uk/health-partners/ -->
+  <title>Keele Health Partners | Keele University</title>
+  <meta name="author" content="Keele University" />
   <meta name="description" content="Keele Health Partners brings together health, academic, community, and business partners to turn research into real-world health impact across Staffordshire and the North Midlands." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#005d8f" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.keele.ac.uk/health-partners/" />
+  <meta property="og:title" content="Keele Health Partners | Keele University" />
+  <meta property="og:description" content="Keele Health Partners brings together health, academic, community, and business partners to turn research into real-world health impact across Staffordshire and the North Midlands." />
+  <meta property="og:image" content="https://www.keele.ac.uk/health-partners/assets/images/og-share.jpg" />
+  <meta property="og:url" content="https://www.keele.ac.uk/health-partners/" />
+  <meta property="og:site_name" content="Keele University" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@KeeleUniversity" />
+  <meta name="twitter:title" content="Keele Health Partners | Keele University" />
+  <meta name="twitter:description" content="Keele Health Partners brings together health, academic, community, and business partners to turn research into real-world health impact across Staffordshire and the North Midlands." />
+  <meta name="twitter:image" content="https://www.keele.ac.uk/health-partners/assets/images/og-share.jpg" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
   <style>
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: normal;
+      font-weight: 300 600;
+      font-display: swap;
+      src: url('assets/fonts/dm-sans.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-weight: 300;
+      font-display: swap;
+      src: url('assets/fonts/dm-sans-italic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'DM Serif Display';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/dm-serif-display.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'DM Serif Display';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/fonts/dm-serif-display-italic.woff2') format('woff2');
+    }
+
     /* ============================================================
        DESIGN TOKENS
        ------------------------------------------------------------
@@ -51,6 +122,20 @@
       --accent:      var(--keele-gold);
       --accent-soft: var(--keele-gold-pale);
 
+      /* On-dark text (verified WCAG AA on --keele-indigo) */
+      --text-on-dark:           #ffffff;
+      --text-on-dark-secondary: rgba(255, 255, 255, 0.85);
+      --text-on-dark-muted:     rgba(255, 255, 255, 0.72);
+      --text-on-dark-label:     rgba(255, 255, 255, 0.60);
+      --text-on-dark-subtle:    rgba(255, 255, 255, 0.55);
+      --accent-on-dark:         #5ec4ef;
+      --input-bg-on-dark:       rgba(255, 255, 255, 0.10);
+      --placeholder-on-dark:    rgba(255, 255, 255, 0.55);
+
+      /* Footer text (verified WCAG AA on #12091f) */
+      --text-on-footer-muted:   rgba(255, 255, 255, 0.70);
+      --text-on-footer-subtle:  rgba(255, 255, 255, 0.55);
+
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
 
@@ -82,7 +167,10 @@
       font-family: var(--font-body);
       color: var(--text-dark);
       background: var(--warm-white);
-      overflow-x: hidden;
+    }
+
+    .page-wrap {
+      overflow-x: clip;
     }
 
     img { max-width: 100%; display: block; }
@@ -189,7 +277,7 @@
     .btn-outline-white {
       background: transparent;
       color: #fff;
-      border: 2px solid rgba(255,255,255,0.55);
+      border: 2px solid rgba(255,255,255,0.75);
     }
     .btn-outline-white:hover {
       background: rgba(255,255,255,0.12);
@@ -332,6 +420,7 @@
       transition: color 0.2s;
     }
     .nav-mobile a:hover { color: #fff; }
+    .nav-mobile a:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 4px; border-radius: 2px; }
     .nav-mobile .btn { margin-top: 1.25rem; width: 100%; justify-content: center; }
 
     /* ============================================================
@@ -341,8 +430,9 @@
       position: relative;
       min-height: 100svh;
       display: flex;
-      align-items: flex-end;
-      padding-bottom: clamp(64px, 10vw, 100px);
+      align-items: center;
+      padding-top: calc(var(--nav-h) + clamp(24px, 5vh, 48px));
+      padding-bottom: clamp(48px, 8vh, 80px);
       overflow: hidden;
     }
 
@@ -371,9 +461,9 @@
       inset: 0;
       background: linear-gradient(
         to top,
-        rgba(39,30,61,0.92) 0%,
-        rgba(39,30,61,0.6) 45%,
-        rgba(39,30,61,0.35) 100%
+        rgba(39, 30, 61, 0.92) 0%,
+        rgba(39, 30, 61, 0.82) 50%,
+        rgba(39, 30, 61, 0.78) 100%
       );
       z-index: 2;
     }
@@ -401,7 +491,7 @@
       gap: 10px;
       background: rgba(0,93,143,0.18);
       border: 1px solid rgba(26,143,201,0.35);
-      color: var(--teal-light);
+      color: var(--accent-on-dark);
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -414,7 +504,7 @@
     }
     .hero-kicker-dot {
       width: 6px; height: 6px;
-      background: var(--teal-light);
+      background: var(--accent-on-dark);
       border-radius: 50%;
       animation: pulse 2s ease infinite;
     }
@@ -435,13 +525,13 @@
     }
     .hero h1 em {
       font-style: italic;
-      color: var(--teal-light);
+      color: var(--accent-on-dark);
     }
 
     .hero-intro {
       font-size: clamp(1rem, 2vw, 1.15rem);
       line-height: 1.72;
-      color: rgba(255,255,255,0.72);
+      color: var(--text-on-dark-muted);
       max-width: 560px;
       margin-bottom: 2.5rem;
       font-weight: 300;
@@ -464,7 +554,7 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      color: rgba(255,255,255,0.4);
+      color: var(--text-on-dark-subtle);
       font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -595,10 +685,10 @@
       pointer-events: none;
     }
 
-    .research .section-label { color: var(--teal-light); }
-    .research .section-label::before { background: var(--teal-light); }
+    .research .section-label { color: var(--accent-on-dark); }
+    .research .section-label::before { background: var(--accent-on-dark); }
     .research .section-heading { color: #fff; }
-    .research .section-sub { color: rgba(255,255,255,0.6); }
+    .research .section-sub { color: var(--text-on-dark-label); }
 
     .research-intro-row {
       display: grid;
@@ -610,7 +700,7 @@
 
     .nhs-note {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.45);
+      color: var(--text-on-dark-muted);
       font-style: italic;
       line-height: 1.6;
       border-left: 2px solid rgba(0,93,143,0.4);
@@ -656,8 +746,7 @@
     .research-num {
       font-family: var(--font-display);
       font-size: 0.75rem;
-      color: var(--teal-light);
-      opacity: 0.6;
+      color: var(--accent-on-dark);
       width: 20px;
       flex-shrink: 0;
     }
@@ -697,7 +786,7 @@
       padding: 0 2rem 2rem;
       font-size: 0.9375rem;
       line-height: 1.75;
-      color: rgba(255,255,255,0.62);
+      color: var(--text-on-dark-muted);
       border-top: 1px solid rgba(255,255,255,0.07);
       padding-top: 1.25rem;
     }
@@ -1094,6 +1183,7 @@
       transition: gap 0.2s, color 0.2s;
     }
     .news-card-link:hover { color: var(--teal-light); gap: 10px; }
+    .news-card-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
 
     .news-placeholder-note {
       margin-top: 2rem;
@@ -1212,8 +1302,8 @@
       pointer-events: none;
     }
 
-    .contact .section-label { color: var(--teal-light); }
-    .contact .section-label::before { background: var(--teal-light); }
+    .contact .section-label { color: var(--accent-on-dark); }
+    .contact .section-label::before { background: var(--accent-on-dark); }
     .contact .section-heading { color: #fff; }
 
     .contact-grid {
@@ -1227,7 +1317,7 @@
     .contact-intro {
       font-size: 1.0625rem;
       line-height: 1.75;
-      color: rgba(255,255,255,0.65);
+      color: var(--text-on-dark-muted);
       margin-bottom: 2.5rem;
     }
 
@@ -1255,19 +1345,19 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .contact-way-icon svg { color: var(--teal-light); }
+    .contact-way-icon svg { color: var(--accent-on-dark); }
     .contact-way-text {}
     .contact-way-label {
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: var(--text-on-dark-label);
       margin-bottom: 0.15rem;
     }
     .contact-way-value {
       font-size: 0.9375rem;
-      color: rgba(255,255,255,0.85);
+      color: var(--text-on-dark-secondary);
       font-weight: 500;
     }
 
@@ -1282,7 +1372,7 @@
 
     .ms-form-note {
       font-size: 0.82rem;
-      color: rgba(255,255,255,0.4);
+      color: var(--text-on-dark-label);
       margin-bottom: 1.5rem;
       font-style: italic;
     }
@@ -1298,13 +1388,13 @@
     .form-field label {
       font-size: 0.82rem;
       font-weight: 600;
-      color: rgba(255,255,255,0.6);
+      color: var(--text-on-dark-label);
       letter-spacing: 0.03em;
     }
     .form-field input,
     .form-field select,
     .form-field textarea {
-      background: rgba(255,255,255,0.07);
+      background: var(--input-bg-on-dark);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--radius-sm);
       padding: 0.75rem 1rem;
@@ -1316,7 +1406,7 @@
       width: 100%;
     }
     .form-field input::placeholder,
-    .form-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-field textarea::placeholder { color: var(--placeholder-on-dark); }
     .form-field select option { background: var(--navy); color: #fff; }
     .form-field input:focus,
     .form-field select:focus,
@@ -1324,6 +1414,12 @@
       border-color: var(--teal);
       background: rgba(255,255,255,0.1);
       box-shadow: 0 0 0 3px rgba(0,93,143,0.2);
+    }
+    .form-field input:focus-visible,
+    .form-field select:focus-visible,
+    .form-field textarea:focus-visible {
+      outline: 2px solid var(--accent-on-dark);
+      outline-offset: 2px;
     }
     .form-field textarea { resize: vertical; min-height: 110px; }
 
@@ -1337,11 +1433,11 @@
     }
     .form-privacy {
       font-size: 0.78rem;
-      color: rgba(255,255,255,0.35);
+      color: var(--text-on-dark-subtle);
       line-height: 1.5;
     }
-    .form-privacy a { color: rgba(255,255,255,0.5); text-decoration: underline; }
-    .form-privacy a:hover { color: rgba(255,255,255,0.75); }
+    .form-privacy a { color: var(--text-on-dark-muted); text-decoration: underline; }
+    .form-privacy a:hover { color: var(--text-on-dark-secondary); }
 
     /* ============================================================
        FOOTER
@@ -1387,27 +1483,27 @@
     .footer-brand-desc {
       font-size: 0.875rem;
       line-height: 1.7;
-      color: rgba(255,255,255,0.38);
+      color: var(--text-on-footer-muted);
       max-width: 300px;
       margin-bottom: 1.25rem;
     }
 
     .footer-keele-note {
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.22);
+      color: var(--text-on-footer-subtle);
       border-left: 2px solid rgba(255,255,255,0.1);
       padding-left: 0.75rem;
       line-height: 1.6;
     }
-    .footer-keele-note a { color: rgba(255,255,255,0.3); text-decoration: underline; }
-    .footer-keele-note a:hover { color: rgba(255,255,255,0.55); }
+    .footer-keele-note a { color: var(--text-on-footer-subtle); text-decoration: underline; }
+    .footer-keele-note a:hover { color: var(--text-on-footer-muted); }
 
     .footer-col-title {
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: var(--text-on-dark-label);
       margin-bottom: 1rem;
     }
 
@@ -1419,6 +1515,19 @@
     }
     .footer-links a:hover { color: rgba(255,255,255,0.8); }
     .footer-links a:focus-visible { outline: 1px solid var(--teal-light); outline-offset: 3px; border-radius: 2px; }
+    .footer-cookie-settings {
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--text-on-footer-muted);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+    }
+    .footer-cookie-settings:hover { color: var(--text-on-footer-muted); }
+    .footer-cookie-settings:focus-visible { outline: 1px solid var(--teal-light); outline-offset: 3px; border-radius: 2px; }
+
 
     .footer-bottom {
       display: flex;
@@ -1429,85 +1538,8 @@
     }
     .footer-copy {
       font-size: 0.78rem;
-      color: rgba(255,255,255,0.2);
+      color: var(--text-on-footer-subtle);
     }
-    .footer-legal {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .footer-legal a {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.25);
-      transition: color 0.2s;
-    }
-    .footer-legal a:hover { color: rgba(255,255,255,0.55); }
-
-    /* ============================================================
-       COOKIE BANNER (UI PLACEHOLDER)
-       ============================================================ */
-    .cookie-banner {
-      position: fixed;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 3rem);
-      max-width: 760px;
-      background: var(--navy-mid);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      z-index: 2000;
-      box-shadow: var(--shadow-lift);
-      backdrop-filter: blur(8px);
-      flex-wrap: wrap;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .cookie-banner.hidden {
-      opacity: 0;
-      transform: translateX(-50%) translateY(20px);
-      pointer-events: none;
-    }
-    .cookie-text {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-      flex: 1;
-    }
-    .cookie-text a { color: var(--teal-light); text-decoration: underline; }
-    .cookie-actions { display: flex; gap: 0.75rem; flex-shrink: 0; flex-wrap: wrap; }
-    .cookie-accept {
-      background: var(--teal);
-      color: #fff;
-      border: none;
-      padding: 0.6rem 1.25rem;
-      border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: var(--font-body);
-      transition: background 0.2s;
-    }
-    .cookie-accept:hover { background: var(--teal-light); }
-    .cookie-accept:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 3px; }
-    .cookie-decline {
-      background: transparent;
-      color: rgba(255,255,255,0.5);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 0.6rem 1.25rem;
-      border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: var(--font-body);
-      transition: all 0.2s;
-    }
-    .cookie-decline:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.35); }
-    .cookie-decline:focus-visible { outline: 2px solid rgba(255,255,255,0.5); outline-offset: 3px; }
 
     /* ============================================================
        SCROLL REVEAL
@@ -1556,7 +1588,6 @@
     @media (max-width: 680px) {
       .profiles-grid { grid-template-columns: 1fr; }
       .case-grid { grid-template-columns: 1fr; }
-      .cookie-banner { flex-direction: column; align-items: flex-start; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1576,19 +1607,49 @@
 
     /* No-JavaScript fallback: reveal content that would otherwise stay hidden */
     .no-js .reveal { opacity: 1 !important; transform: none !important; }
+
+    /* ============================================================
+       ONETRUST — centre consent UI (avoid site styles skewing layout)
+       ============================================================ */
+    #onetrust-consent-sdk {
+      left: 0 !important;
+      right: 0 !important;
+    }
+
+    #onetrust-banner-sdk {
+      left: 50% !important;
+      right: auto !important;
+      transform: translateX(-50%) !important;
+      width: min(56rem, calc(100vw - 2rem)) !important;
+      max-width: min(56rem, calc(100vw - 2rem)) !important;
+      box-sizing: border-box !important;
+    }
+
+    #onetrust-consent-sdk button {
+      border: revert;
+      background: revert;
+      font-family: Arial, Helvetica, sans-serif;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WH5D65B"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="page-wrap">
   <!-- Skip link -->
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- ============================================================
        NAVIGATION
        ============================================================ -->
+  <header>
   <nav class="nav" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="#" class="nav-logo" aria-label="Keele Health Partners — home">
+      <a href="#" class="nav-logo">
         <div class="nav-logo-mark" aria-hidden="true">KHP</div>
         <div class="nav-logo-text">
           <span class="nav-logo-name">Keele Health Partners</span>
@@ -1623,6 +1684,7 @@
     <a href="#team" class="mobile-nav-link">Team</a>
     <a href="#contact" class="btn btn-primary mobile-nav-link">Work with us</a>
   </div>
+  </header>
 
   <!-- ============================================================
        MAIN CONTENT
@@ -1645,8 +1707,8 @@
       <div class="hero-noise" aria-hidden="true"></div>
 
       <div class="container hero-content">
-        <div class="hero-kicker" aria-hidden="true">
-          <span class="hero-kicker-dot"></span>
+        <div class="hero-kicker">
+          <span class="hero-kicker-dot" aria-hidden="true"></span>
           Health Innovation · Staffordshire &amp; North Midlands
         </div>
         <h1 id="hero-heading">
@@ -1773,13 +1835,13 @@
             <button class="research-trigger" aria-expanded="false" aria-controls="panel-mental-health">
               <span class="research-trigger-left">
                 <span class="research-num" aria-hidden="true">01</span>
-                <span class="research-trigger-title">Mental Health</span>
+                <span class="research-trigger-title" id="research-title-mental-health">Mental Health</span>
               </span>
               <span class="research-chevron" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </span>
             </button>
-            <div class="research-panel" id="panel-mental-health" role="region">
+            <div class="research-panel" id="panel-mental-health" role="region" aria-labelledby="research-title-mental-health">
               <div class="research-panel-inner">
                 Supporting mental wellbeing through research, digital tools, and community engagement. We want to create practical solutions that help people at every stage of life — from early intervention through to long-term management and recovery.
               </div>
@@ -1790,13 +1852,13 @@
             <button class="research-trigger" aria-expanded="false" aria-controls="panel-life-sciences">
               <span class="research-trigger-left">
                 <span class="research-num" aria-hidden="true">02</span>
-                <span class="research-trigger-title">Life Sciences &amp; Precision Medicine</span>
+                <span class="research-trigger-title" id="research-title-life-sciences">Life Sciences &amp; Precision Medicine</span>
               </span>
               <span class="research-chevron" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </span>
             </button>
-            <div class="research-panel" id="panel-life-sciences" role="region">
+            <div class="research-panel" id="panel-life-sciences" role="region" aria-labelledby="research-title-life-sciences">
               <div class="research-panel-inner">
                 Driving biomedical research — including neuroscience, pharmacology, and bioengineering — and turning discoveries into personalised, preventative care. We work closely with industry partners to bring innovations from bench to bedside.
               </div>
@@ -1807,13 +1869,13 @@
             <button class="research-trigger" aria-expanded="false" aria-controls="panel-ageing">
               <span class="research-trigger-left">
                 <span class="research-num" aria-hidden="true">03</span>
-                <span class="research-trigger-title">Healthy Ageing &amp; Long-Term Conditions</span>
+                <span class="research-trigger-title" id="research-title-ageing">Healthy Ageing &amp; Long-Term Conditions</span>
               </span>
               <span class="research-chevron" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </span>
             </button>
-            <div class="research-panel" id="panel-ageing" role="region">
+            <div class="research-panel" id="panel-ageing" role="region" aria-labelledby="research-title-ageing">
               <div class="research-panel-inner">
                 Building on Keele's expertise in musculoskeletal health and primary care to find better ways to support ageing populations and manage chronic conditions in community settings — improving quality of life and reducing system pressure.
               </div>
@@ -1824,13 +1886,13 @@
             <button class="research-trigger" aria-expanded="false" aria-controls="panel-digital">
               <span class="research-trigger-left">
                 <span class="research-num" aria-hidden="true">04</span>
-                <span class="research-trigger-title">Technology, Digital Health &amp; Data Innovation</span>
+                <span class="research-trigger-title" id="research-title-digital">Technology, Digital Health &amp; Data Innovation</span>
               </span>
               <span class="research-chevron" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               </span>
             </button>
-            <div class="research-panel" id="panel-digital" role="region">
+            <div class="research-panel" id="panel-digital" role="region" aria-labelledby="research-title-digital">
               <div class="research-panel-inner">
                 Using novel technology, data, AI, and digital platforms to improve care, empower self-management, and free up clinical time. We work closely with Keele's Digital Society Institute and local tech businesses to develop and deploy real-world solutions.
               </div>
@@ -1858,8 +1920,9 @@
       </div>
 
       <!-- Logo carousel — rendered from KHP_DATA.partners (see config script near end of file). -->
-      <div class="partner-track-wrap" aria-label="Partner organisations" role="region">
-        <div class="partner-track" id="partner-track" aria-hidden="true"><!-- populated by JS --></div>
+      <ul class="visually-hidden" id="partner-sr-list" role="list"></ul>
+      <div class="partner-track-wrap" aria-hidden="true" role="presentation">
+        <div class="partner-track" id="partner-track"><!-- populated by JS --></div>
       </div>
 
       <div class="container">
@@ -1979,7 +2042,7 @@
               </div>
             </div>
             <div class="team-card-body">
-              <h3 class="team-card-name">Christian [Surname TBC]</h3>
+              <h3 class="team-card-name">Christian Mallen</h3>
               <p class="team-card-role">[Role / Title — placeholder]</p>
               <p class="team-card-bio">
                 [Bio text to be supplied. Placeholder content only — final bio, role title, and headshot required before production launch.]
@@ -2080,7 +2143,7 @@
 
                 <div class="form-submit">
                   <p class="form-privacy">
-                    Your data will be handled in accordance with our <a href="#" aria-label="Privacy policy (placeholder link)">privacy policy</a>.
+                    Your data will be handled in accordance with our <a href="https://www.keele.ac.uk/privacy/">privacy policy</a>.
                   </p>
                   <button type="submit" class="btn btn-primary">
                     Send enquiry
@@ -2137,14 +2200,11 @@
         <div>
           <p class="footer-col-title">Legal &amp; compliance</p>
           <ul class="footer-links" role="list">
-            <li><a href="#" aria-label="Privacy policy (placeholder)">Privacy policy</a></li>
-            <li><a href="#" aria-label="Cookie policy (placeholder)">Cookie policy</a></li>
-            <li><a href="#" aria-label="Accessibility statement (placeholder)">Accessibility statement</a></li>
+            <li><a href="https://www.keele.ac.uk/privacy/">Privacy and cookies</a></li>
+            <li><a href="https://www.keele.ac.uk/accessibility/">Accessibility statement</a></li>
+            <li><button type="button" class="footer-cookie-settings" onclick="OneTrust.ToggleInfoDisplay()">Cookie settings</button></li>
             <li><a href="https://www.keele.ac.uk" target="_blank" rel="noopener noreferrer">Keele University</a></li>
           </ul>
-          <p style="margin-top: 1.5rem; font-size: 0.72rem; color: rgba(255,255,255,0.18); font-style: italic; line-height: 1.6;">
-            ⚠ Legal footer links are placeholders. Privacy policy, cookie compliance tooling, and accessibility statement required before production launch.
-          </p>
         </div>
 
       </div>
@@ -2153,28 +2213,9 @@
         <p class="footer-copy">
           © <span id="year"></span> Keele Health Partners. All rights reserved.
         </p>
-        <nav class="footer-legal" aria-label="Legal links">
-          <a href="#">Privacy</a>
-          <a href="#">Cookies</a>
-          <a href="#">Accessibility</a>
-        </nav>
       </div>
     </div>
   </footer>
-
-  <!-- ============================================================
-       COOKIE BANNER (UI PLACEHOLDER)
-       ============================================================ -->
-  <div class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" id="cookie-banner">
-    <p class="cookie-text">
-      We use cookies to improve your experience on this site. By continuing, you agree to our use of cookies.
-      <a href="#" aria-label="Cookie policy (placeholder)">Learn more</a>.
-      <em style="display:block; margin-top:0.25rem; opacity:0.6; font-size:0.75rem;">⚠ UI placeholder — replace with a real consent platform such as Cookiebot before production launch.</em>
-    </p>
-    <div class="cookie-actions">
-      <button class="cookie-decline" id="cookie-decline">Decline</button>
-      <button class="cookie-accept" id="cookie-accept">Accept all</button>
-    </div>
   </div>
 
   <!-- ============================================================
@@ -2255,7 +2296,13 @@
       const track = document.getElementById('partner-track');
       const profiles = document.getElementById('profiles-grid');
       const note = document.getElementById('partners-note');
+      const srList = document.getElementById('partner-sr-list');
       const list = KHP_DATA.partners || [];
+
+      // Screen-reader list of partner names (marquee is decorative)
+      if (srList) {
+        srList.innerHTML = list.map(p => `<li>${esc(p.name)}</li>`).join('');
+      }
 
       // Logo carousel (duplicated once for a seamless marquee loop)
       const tiles = list.map(partnerTile).join('');
@@ -2371,6 +2418,14 @@
     // ── Hamburger / mobile nav
     const hamburger = document.querySelector('.nav-hamburger');
     const mobileNav = document.getElementById('mobile-nav');
+
+    const closeMobileNav = () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    };
+
     hamburger.addEventListener('click', () => {
       const open = hamburger.classList.toggle('open');
       mobileNav.classList.toggle('open', open);
@@ -2379,12 +2434,14 @@
     });
     // Close on mobile link click
     mobileNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileNav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        mobileNav.setAttribute('aria-hidden', 'true');
-      });
+      a.addEventListener('click', closeMobileNav);
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+        closeMobileNav();
+        hamburger.focus();
+      }
     });
 
     // ── Research accordions
@@ -2422,14 +2479,6 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => revealObs.observe(el));
-
-    // ── Cookie banner
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept');
-    const declineBtn = document.getElementById('cookie-decline');
-    const dismiss = () => banner.classList.add('hidden');
-    acceptBtn.addEventListener('click', dismiss);
-    declineBtn.addEventListener('click', dismiss);
   </script>
 
 </body>

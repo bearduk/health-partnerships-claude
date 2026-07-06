@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Keele Health Partners">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#271E3D"/>
+      <stop offset="55%" stop-color="#174872"/>
+      <stop offset="100%" stop-color="#005D8F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="72" y="72" width="88" height="88" rx="14" fill="#005D8F"/>
+  <text x="116" y="132" text-anchor="middle" font-family="Georgia, serif" font-size="34" font-weight="700" fill="#ffffff">KHP</text>
+  <text x="190" y="118" font-family="Georgia, serif" font-size="54" fill="#ffffff">Keele Health Partners</text>
+  <text x="190" y="168" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="rgba(255,255,255,0.85)">Turning research into real-world health impact</text>
+  <text x="72" y="560" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="rgba(255,255,255,0.7)">Staffordshire and North Midlands | Keele University</text>
+</svg>

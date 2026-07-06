@@ -1,11 +1,33 @@
 # Keele Health Partners microsite — production pass handoff
 
-**Date:** 6 July 2026
-**File changed:** `index.html` (single-file static site, GitHub Pages ready)
+**Date:** 6 July 2026 (content pass) · 6 July 2026 (compliance pass)
+**Files:** `index.html` (single-file static site), `sitemap.xml`, `assets/`, `README.md`
 
 ---
 
-## What was done in this pass
+## Technical / compliance status (6 July 2026)
+
+The site is **technically ready for staging** per [`external-microsite-requirements.md`](external-microsite-requirements.md). Content placeholders remain (see below).
+
+| Item | Status |
+|---|---|
+| OneTrust consent | ✅ Integrated with localhost suppression |
+| Google Tag Manager (`GTM-WH5D65B`) | ✅ Head + noscript |
+| Cookie settings control | ✅ Footer button (`OneTrust.ToggleInfoDisplay`) |
+| Metadata (canonical, OG, Twitter) | ✅ |
+| Favicons + share image | ✅ `assets/icons/`, `assets/images/og-share.jpg` |
+| Self-hosted fonts | ✅ DM Sans / DM Serif Display in `assets/fonts/` |
+| Legal footer links | ✅ Links to keele.ac.uk privacy and accessibility |
+| `sitemap.xml` | ✅ |
+| `robots.txt` | ✅ Removed — not used in standalone microsites |
+| Lighthouse a11y | ✅ Score 100 — see `reports/lighthouse-a11y.report.html` |
+| Web team ID confirmation | ⏳ Required before production go-live |
+
+**Before production:** confirm OneTrust and GTM IDs with the web team; test consent on staging.
+
+---
+
+## What was done in the content pass
 
 **1. Branding aligned to Keele's official identity.**
 The palette now uses Keele University's official "Keele blue" web colours — indigo `#271E3D`, dark blue `#174872`, and blue `#005D8F` — with heraldic gold as a warm accent, replacing the previous custom teal/orange. All colours live in one place (the `DESIGN TOKENS` block at the top of `index.html`) with Keele-named tokens (`--keele-blue`, `--keele-indigo`, `--keele-gold`, …) so the whole site can be re-themed by editing a few lines. Body text colours were nudged for stronger contrast (WCAG AA).
@@ -49,7 +71,6 @@ Legend: ✅ present (approved) · 🟡 partial / placeholder · ❌ missing
 - **Team / "Our team"** — currently a single placeholder card. Needs **Christian's full name, role/title, bio, headshot, and email** (the approved document flagged this as a placeholder), plus any further team members.
 - **Public partnerships** and **Training & development** — currently generic "coming soon" holding copy (these were empty `---` in the approved document). Confirm or replace with approved copy.
 - **KHP logo** — the header/footer currently use a temporary "KHP" text badge. Supply the **official KHP/Keele logo** (SVG preferred).
-- **Legal & compliance** — privacy policy, cookie policy, and accessibility statement are placeholder links; the cookie banner is a UI placeholder. A **real consent platform** (e.g. Cookiebot) and the actual policy pages are required before launch.
 - **Partner logo images** — drop files into `assets/` and reference them in the config's `logo` field.
 
 ---

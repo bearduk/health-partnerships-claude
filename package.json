@@ -2,8 +2,8 @@
   "name": "keele-health-partners",
   "private": true,
   "scripts": {
-    "dev": "browser-sync start --server --files 'index.html, assets/**/*, robots.txt' --no-notify --no-open",
-    "dev:open": "browser-sync start --server --files 'index.html, assets/**/*, robots.txt' --no-notify"
+    "dev": "browser-sync start --server --files 'index.html, assets/**/*, sitemap.xml' --no-notify --no-open",
+    "dev:open": "browser-sync start --server --files 'index.html, assets/**/*, sitemap.xml' --no-notify"
   },
   "devDependencies": {
     "browser-sync": "^3.0.0"

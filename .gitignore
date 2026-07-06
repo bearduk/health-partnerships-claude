@@ -21,3 +21,5 @@ npm-debug.log*
 # Node dev tooling (BrowserSync)
 node_modules/
 package-lock.json
+
+reports/
