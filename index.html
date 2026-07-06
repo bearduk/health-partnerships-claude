@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+  <script>document.documentElement.classList.remove('no-js');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Keele Health Partners</title>
@@ -11,22 +12,44 @@
   <style>
     /* ============================================================
        DESIGN TOKENS
+       ------------------------------------------------------------
+       BRAND: Colours are aligned to Keele University's official
+       "Keele blue" web palette (source: keele.ac.uk web style guide):
+         primary / indigo  #271E3D
+         secondary dark    #174872
+         tertiary blue     #005D8F
+       Heraldic GOLD is used as a warm accent.
+
+       The Keele-named tokens below are the preferred names for the
+       web team going forward. The legacy names (--navy, --teal, etc.)
+       are kept as aliases so existing rules keep working — edit the
+       values in ONE place here to re-theme the whole site.
        ============================================================ */
     :root {
-      --navy:        #0d1f35;
-      --navy-mid:    #162b47;
-      --navy-light:  #1e3a5f;
-      --teal:        #1a9b8c;
-      --teal-light:  #22c5b2;
-      --teal-pale:   #e8f7f5;
+      /* Keele official palette (prefer these names) */
+      --keele-indigo:     #271e3d;  /* primary  */
+      --keele-blue-dark:  #174872;  /* secondary dark */
+      --keele-blue:       #005d8f;  /* tertiary — primary interactive colour */
+      --keele-blue-bright:#1a8fc9;  /* hover / bright accent */
+      --keele-blue-pale:  #e6f0f6;  /* pale tint background */
+      --keele-gold:       #c58a1a;  /* heraldic gold accent */
+      --keele-gold-pale:  #f8f0dd;
+
+      /* Legacy aliases → Keele values (do not need editing) */
+      --navy:        var(--keele-indigo);
+      --navy-mid:    #17324f;
+      --navy-light:  var(--keele-blue-dark);
+      --teal:        var(--keele-blue);
+      --teal-light:  var(--keele-blue-bright);
+      --teal-pale:   var(--keele-blue-pale);
       --warm-white:  #f7f6f2;
       --off-white:   #efefeb;
       --sand:        #e8e4dc;
-      --text-dark:   #0d1f35;
+      --text-dark:   var(--keele-indigo);
       --text-mid:    #3a4a5c;
-      --text-light:  #6b7a8d;
-      --accent:      #e8622a;
-      --accent-soft: #fff0ea;
+      --text-light:  #5c6b7d;
+      --accent:      var(--keele-gold);
+      --accent-soft: var(--keele-gold-pale);
 
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body:    'DM Sans', system-ui, sans-serif;
@@ -35,9 +58,9 @@
       --radius-md:  12px;
       --radius-lg:  20px;
 
-      --shadow-soft: 0 2px 20px rgba(13,31,53,0.08);
-      --shadow-mid:  0 8px 40px rgba(13,31,53,0.14);
-      --shadow-lift: 0 20px 60px rgba(13,31,53,0.18);
+      --shadow-soft: 0 2px 20px rgba(39,30,61,0.08);
+      --shadow-mid:  0 8px 40px rgba(39,30,61,0.14);
+      --shadow-lift: 0 20px 60px rgba(39,30,61,0.18);
 
       --section-pad: clamp(64px, 9vw, 120px);
       --content-max: 1180px;
@@ -151,11 +174,11 @@
     .btn-primary {
       background: var(--teal);
       color: #fff;
-      box-shadow: 0 4px 18px rgba(26,155,140,0.35);
+      box-shadow: 0 4px 18px rgba(0,93,143,0.35);
     }
     .btn-primary:hover {
       background: var(--teal-light);
-      box-shadow: 0 6px 24px rgba(26,155,140,0.45);
+      box-shadow: 0 6px 24px rgba(0,93,143,0.45);
       transform: translateY(-1px);
     }
     .btn-primary:focus-visible {
@@ -204,7 +227,7 @@
       transition: background 0.35s ease, box-shadow 0.35s ease;
     }
     .nav.scrolled {
-      background: rgba(13,31,53,0.97);
+      background: rgba(39,30,61,0.97);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 rgba(255,255,255,0.07);
@@ -338,7 +361,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #0d1f35 0%, #1e3a5f 40%, #0f3040 100%);
+      background: linear-gradient(135deg, #271e3d 0%, #174872 40%, #103a5c 100%);
       z-index: 0;
     }
     /* Overlay on top of video */
@@ -348,9 +371,9 @@
       inset: 0;
       background: linear-gradient(
         to top,
-        rgba(13,31,53,0.92) 0%,
-        rgba(13,31,53,0.6) 45%,
-        rgba(13,31,53,0.35) 100%
+        rgba(39,30,61,0.92) 0%,
+        rgba(39,30,61,0.6) 45%,
+        rgba(39,30,61,0.35) 100%
       );
       z-index: 2;
     }
@@ -376,8 +399,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(26,155,140,0.18);
-      border: 1px solid rgba(34,197,178,0.35);
+      background: rgba(0,93,143,0.18);
+      border: 1px solid rgba(26,143,201,0.35);
       color: var(--teal-light);
       font-size: 0.78rem;
       font-weight: 600;
@@ -559,7 +582,7 @@
       top: -120px; right: -120px;
       width: 500px; height: 500px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(26,155,140,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,93,143,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
     .research::after {
@@ -568,7 +591,7 @@
       bottom: -80px; left: -80px;
       width: 350px; height: 350px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(26,155,140,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,93,143,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -590,7 +613,7 @@
       color: rgba(255,255,255,0.45);
       font-style: italic;
       line-height: 1.6;
-      border-left: 2px solid rgba(26,155,140,0.4);
+      border-left: 2px solid rgba(0,93,143,0.4);
       padding-left: 1rem;
       align-self: center;
     }
@@ -610,7 +633,7 @@
     }
     .research-accordion:hover,
     .research-accordion.open {
-      background: rgba(26,155,140,0.1);
+      background: rgba(0,93,143,0.1);
     }
 
     .research-trigger {
@@ -770,6 +793,151 @@
       text-transform: uppercase;
     }
 
+    /* Partner logo image (real logos, when supplied) */
+    .partner-logo-tile img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.72;
+      transition: filter 0.25s, opacity 0.25s;
+    }
+    .partner-logo-tile:hover img { filter: grayscale(0); opacity: 1; }
+
+    /* ============================================================
+       PARTNER PROFILES
+       ============================================================ */
+    .partner-profiles {
+      padding: var(--section-pad) 0;
+      background: var(--warm-white);
+    }
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: clamp(32px, 5vw, 56px);
+    }
+    .profile-card {
+      background: #fff;
+      border: 1px solid var(--sand);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .profile-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-mid);
+      border-color: var(--teal);
+    }
+    .profile-logo {
+      width: 84px; height: 48px;
+      display: flex; align-items: center; justify-content: flex-start;
+    }
+    .profile-logo img { max-height: 48px; width: auto; object-fit: contain; }
+    .profile-logo-placeholder {
+      width: 84px; height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--keele-blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal);
+      font-family: var(--font-display);
+      font-size: 1rem;
+    }
+    .profile-type {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .profile-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      line-height: 1.25;
+      color: var(--navy);
+    }
+    .profile-blurb { font-size: 0.92rem; line-height: 1.65; color: var(--text-mid); }
+    .profile-link {
+      margin-top: auto;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem; font-weight: 600; color: var(--teal);
+      transition: gap 0.2s;
+    }
+    .profile-link:hover { gap: 10px; }
+    .profile-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+    /* ============================================================
+       CASE STUDIES / SUCCESS STORIES
+       ============================================================ */
+    .case-studies { padding: var(--section-pad) 0; background: var(--off-white); }
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: clamp(32px, 5vw, 56px);
+    }
+    .case-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .case-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-mid); }
+    .case-card-media {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--keele-blue) 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .case-card-media img { width: 100%; height: 100%; object-fit: cover; }
+    .case-card-media svg { opacity: 0.28; color: #fff; }
+    .case-card-tag {
+      position: absolute; top: 1rem; left: 1rem;
+      background: rgba(39,30,61,0.78);
+      color: #fff; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.3rem 0.75rem; border-radius: 100px;
+    }
+    .case-card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+    .case-card-partner { font-size: 0.78rem; font-weight: 600; color: var(--teal); }
+    .case-card-title { font-family: var(--font-display); font-size: 1.15rem; line-height: 1.3; color: var(--navy); }
+    .case-card-summary { font-size: 0.92rem; line-height: 1.65; color: var(--text-mid); }
+    .case-card-link {
+      margin-top: auto; display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.85rem; font-weight: 600; color: var(--teal); transition: gap 0.2s;
+    }
+    .case-card-link:hover { gap: 10px; }
+    .case-card-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+    .data-note {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+    .data-note:empty { display: none; }
+
+    /* Empty-state placeholder shared by data-driven sections */
+    .section-placeholder {
+      margin-top: 2rem;
+      padding: 2.5rem;
+      border: 1.5px dashed var(--sand);
+      border-radius: var(--radius-md);
+      background: #fff;
+      text-align: center;
+      color: var(--text-mid);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .section-placeholder strong { color: var(--navy); }
+
     /* ============================================================
        PUBLIC PARTNERSHIPS & TRAINING (HOLDING)
        ============================================================ */
@@ -874,14 +1042,14 @@
 
     .news-card-img-placeholder.teal   { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%); }
     .news-card-img-placeholder.navy   { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
-    .news-card-img-placeholder.accent { background: linear-gradient(135deg, #1e4d6b 0%, var(--navy-mid) 100%); }
+    .news-card-img-placeholder.accent { background: linear-gradient(135deg, #175074 0%, var(--navy-mid) 100%); }
 
     .news-card-img-placeholder svg { opacity: 0.25; color: #fff; }
 
     .news-card-tag {
       position: absolute;
       top: 1rem; left: 1rem;
-      background: rgba(13,31,53,0.75);
+      background: rgba(39,30,61,0.75);
       backdrop-filter: blur(6px);
       color: #fff;
       font-size: 0.7rem;
@@ -931,7 +1099,7 @@
       margin-top: 2rem;
       padding: 1rem 1.25rem;
       background: var(--teal-pale);
-      border: 1px solid rgba(26,155,140,0.2);
+      border: 1px solid rgba(0,93,143,0.2);
       border-radius: var(--radius-md);
       font-size: 0.82rem;
       color: var(--teal);
@@ -1040,7 +1208,7 @@
       top: -200px; right: -100px;
       width: 600px; height: 600px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(26,155,140,0.1) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(0,93,143,0.1) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -1076,12 +1244,12 @@
     }
     .contact-way:hover {
       background: rgba(255,255,255,0.08);
-      border-color: rgba(26,155,140,0.35);
+      border-color: rgba(0,93,143,0.35);
     }
     .contact-way-icon {
       width: 40px; height: 40px;
       border-radius: 10px;
-      background: rgba(26,155,140,0.15);
+      background: rgba(0,93,143,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1155,7 +1323,7 @@
     .form-field textarea:focus {
       border-color: var(--teal);
       background: rgba(255,255,255,0.1);
-      box-shadow: 0 0 0 3px rgba(26,155,140,0.2);
+      box-shadow: 0 0 0 3px rgba(0,93,143,0.2);
     }
     .form-field textarea { resize: vertical; min-height: 110px; }
 
@@ -1179,7 +1347,7 @@
        FOOTER
        ============================================================ */
     .footer {
-      background: #080f1a;
+      background: #12091f;
       padding: clamp(40px,5vw,64px) 0 clamp(24px,3vw,32px);
     }
 
@@ -1385,6 +1553,12 @@
       .hero-scroll-hint { display: none; }
     }
 
+    @media (max-width: 680px) {
+      .profiles-grid { grid-template-columns: 1fr; }
+      .case-grid { grid-template-columns: 1fr; }
+      .cookie-banner { flex-direction: column; align-items: flex-start; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1392,7 +1566,16 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
+      /* Never hide content behind an animation the user can't see */
+      .reveal { opacity: 1 !important; transform: none !important; }
+      /* Stop the auto-scrolling logo marquee; let users scroll it instead */
+      .partner-track { animation: none !important; transform: none !important; }
+      .partner-track-wrap { overflow-x: auto; }
+      .hero-video-wrap video { display: none; }
     }
+
+    /* No-JavaScript fallback: reveal content that would otherwise stay hidden */
+    .no-js .reveal { opacity: 1 !important; transform: none !important; }
   </style>
 </head>
 <body>
@@ -1417,6 +1600,7 @@
         <li><a href="#mission">About</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#partners">Partners</a></li>
+        <li><a href="#case-studies">Case studies</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#team">Team</a></li>
       </ul>
@@ -1434,6 +1618,7 @@
     <a href="#mission" class="mobile-nav-link">About</a>
     <a href="#research" class="mobile-nav-link">Research</a>
     <a href="#partners" class="mobile-nav-link">Partners</a>
+    <a href="#case-studies" class="mobile-nav-link">Case studies</a>
     <a href="#news" class="mobile-nav-link">News</a>
     <a href="#team" class="mobile-nav-link">Team</a>
     <a href="#contact" class="btn btn-primary mobile-nav-link">Work with us</a>
@@ -1443,6 +1628,12 @@
        MAIN CONTENT
        ============================================================ -->
   <main id="main">
+
+    <noscript>
+      <div style="background:var(--keele-gold-pale);color:var(--navy);padding:1rem clamp(20px,5vw,48px);text-align:center;font-size:0.9rem;">
+        The Partners, News and Case studies sections need JavaScript to display their content. Please enable JavaScript for the full experience.
+      </div>
+    </noscript>
 
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-heading">
@@ -1666,31 +1857,25 @@
         </div>
       </div>
 
-      <div class="partner-track-wrap" aria-label="Partner organisations — placeholder logos" role="region">
-        <div class="partner-track" aria-hidden="true">
-          <!-- First set -->
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:80px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:50px;"></div><span>NHS Trust</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:70px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:90px;"></div><span>ICB</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:100px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>University</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:65px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:85px;"></div><span>Industry</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:90px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:55px;"></div><span>NHS Trust</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:75px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:95px;"></div><span>Community</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:85px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>Industry</span></div></div>
-          <!-- Duplicated for seamless loop -->
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:80px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:50px;"></div><span>NHS Trust</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:70px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:90px;"></div><span>ICB</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:100px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>University</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:65px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:85px;"></div><span>Industry</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:90px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:55px;"></div><span>NHS Trust</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:75px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:95px;"></div><span>Community</span></div></div>
-          <div class="partner-logo-tile"><div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:85px; margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:60px;"></div><span>Industry</span></div></div>
-        </div>
+      <!-- Logo carousel — rendered from KHP_DATA.partners (see config script near end of file). -->
+      <div class="partner-track-wrap" aria-label="Partner organisations" role="region">
+        <div class="partner-track" id="partner-track" aria-hidden="true"><!-- populated by JS --></div>
       </div>
 
-      <div class="container" style="margin-top: 1.5rem;">
-        <p style="font-size:0.8rem; color: var(--text-light); font-style: italic;">
-          ⚠ Partner logos are placeholders. Confirmed partner identities and logos will be added before production release.
-        </p>
+      <div class="container">
+        <p class="data-note" id="partners-note" role="note"></p>
+      </div>
+    </section>
+
+    <!-- PARTNER PROFILES -->
+    <section class="partner-profiles" id="partner-profiles" aria-labelledby="profiles-heading">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">Partner profiles</span>
+          <h2 class="section-heading" id="profiles-heading">Meet the organisations behind KHP</h2>
+          <p class="section-sub">Each KHP partner brings distinct strengths — from frontline NHS care and clinical academic research to industry innovation and community insight.</p>
+        </div>
+        <div class="profiles-grid" id="profiles-grid"><!-- populated by JS --></div>
       </div>
     </section>
 
@@ -1747,68 +1932,32 @@
           </a>
         </div>
 
-        <div class="news-grid">
+        <!-- News grid — rendered from KHP_DATA.news (see config script near end of file). -->
+        <div class="news-grid" id="news-grid"><!-- populated by JS --></div>
 
-          <article class="news-card reveal">
-            <div class="news-card-img">
-              <div class="news-card-img-placeholder teal">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              </div>
-              <span class="news-card-tag">Research</span>
-            </div>
-            <div class="news-card-body">
-              <p class="news-card-meta">15 April 2025</p>
-              <h3 class="news-card-title">New musculoskeletal research programme launches across Staffordshire primary care network</h3>
-              <p class="news-card-excerpt">A major new programme aimed at improving outcomes for patients with long-term musculoskeletal conditions is set to launch across twelve GP practices this spring.</p>
-              <a href="https://www.keele.ac.uk/health/facultynews/" class="news-card-link" target="_blank" rel="noopener noreferrer">
-                Read more
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="news-card reveal reveal-delay-1">
-            <div class="news-card-img">
-              <div class="news-card-img-placeholder navy">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              </div>
-              <span class="news-card-tag">Partnership</span>
-            </div>
-            <div class="news-card-body">
-              <p class="news-card-meta">3 March 2025</p>
-              <h3 class="news-card-title">Keele secures NIHR funding to expand mental health digital intervention research</h3>
-              <p class="news-card-excerpt">Keele University has been awarded significant NIHR funding to develop and evaluate a suite of digital mental health tools co-designed with service users across the region.</p>
-              <a href="https://www.keele.ac.uk/health/facultynews/" class="news-card-link" target="_blank" rel="noopener noreferrer">
-                Read more
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="news-card reveal reveal-delay-2">
-            <div class="news-card-img">
-              <div class="news-card-img-placeholder accent">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </div>
-              <span class="news-card-tag">Community</span>
-            </div>
-            <div class="news-card-body">
-              <p class="news-card-meta">18 February 2025</p>
-              <h3 class="news-card-title">Health innovation event brings together 80 regional partners to shape KHP priorities</h3>
-              <p class="news-card-excerpt">Over 80 representatives from NHS trusts, local government, industry, and the voluntary sector came together to co-develop Keele Health Partners' strategic research priorities.</p>
-              <a href="https://www.keele.ac.uk/health/facultynews/" class="news-card-link" target="_blank" rel="noopener noreferrer">
-                Read more
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
-            </div>
-          </article>
-
-        </div>
-
-        <div class="news-placeholder-note" role="note">
+        <div class="news-placeholder-note" id="news-note" role="note">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-          News cards above are placeholder content. Final news items will be sourced from KHP's own news feed before production launch.
+          <span></span>
         </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES / SUCCESS STORIES -->
+    <section class="case-studies" id="case-studies" aria-labelledby="case-heading">
+      <div class="container">
+        <div class="news-header-row">
+          <div class="reveal">
+            <span class="section-label">Case studies</span>
+            <h2 class="section-heading" id="case-heading">Success stories from our partnership</h2>
+          </div>
+          <a href="#contact" class="btn btn-outline-navy reveal reveal-delay-1">
+            Share your story
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <!-- Case study grid — rendered from KHP_DATA.caseStudies (see config script near end of file). -->
+        <div class="case-grid" id="case-grid"><!-- populated by JS --></div>
       </div>
     </section>
 
@@ -1975,6 +2124,8 @@
             <li><a href="#mission">About KHP</a></li>
             <li><a href="#research">Research areas</a></li>
             <li><a href="#partners">Our partners</a></li>
+            <li><a href="#partner-profiles">Partner profiles</a></li>
+            <li><a href="#case-studies">Case studies</a></li>
             <li><a href="#public-partnerships">Public partnerships</a></li>
             <li><a href="#training">Training</a></li>
             <li><a href="#news">News</a></li>
@@ -2029,7 +2180,183 @@
   <!-- ============================================================
        JAVASCRIPT
        ============================================================ -->
+  <!-- ============================================================
+       CONTENT CONFIG  ·  EDIT THIS BLOCK TO ADD CONTENT
+       ------------------------------------------------------------
+       The web team can add partners, news and case studies by
+       editing the arrays below — the page rebuilds these sections
+       automatically. No other code needs to change.
+
+       • To add a PARTNER: copy one { ... } line in `partners`.
+         - name    : organisation name (required)
+         - type    : short category label, e.g. "NHS Trust", "University"
+         - logo    : path to a logo image (e.g. "assets/partners/xyz.svg").
+                     Leave "" to show a neutral text placeholder.
+         - url     : link to the partner's website ("" for none)
+         - profile : 1–2 sentence description. If provided, a card also
+                     appears in the "Partner profiles" section.
+
+       • To add a NEWS item: copy one { ... } line in `news`.
+         - date, title, excerpt, tag ("Research"/"Partnership"/…), url
+
+       • To add a CASE STUDY: copy one { ... } line in `caseStudies`.
+         - title, partner, summary, tag, url, image ("" for none)
+
+       Leaving `caseStudies: []` empty shows a friendly "coming soon"
+       placeholder instead of the grid.
+       ============================================================ -->
   <script>
+    const KHP_DATA = {
+      partners: [
+        { name: "Keele University", type: "Founding Partner", logo: "", url: "https://www.keele.ac.uk",
+          profile: "Founding partner of KHP, bringing internationally recognised strengths in musculoskeletal health, primary care, pharmacy and digital innovation through its Faculty of Medicine and Health Sciences." },
+        /* ↓↓↓ PLACEHOLDER partners — replace names/logos with confirmed KHP members ↓↓↓ */
+        { name: "Regional NHS Trust", type: "NHS Trust", logo: "", url: "", profile: "" },
+        { name: "Integrated Care Board", type: "ICB", logo: "", url: "", profile: "" },
+        { name: "NHS Foundation Trust", type: "NHS Foundation Trust", logo: "", url: "", profile: "" },
+        { name: "Industry Partner", type: "Industry", logo: "", url: "", profile: "" },
+        { name: "Community Organisation", type: "Community", logo: "", url: "", profile: "" }
+      ],
+
+      /* PLACEHOLDER news — styled to mirror Keele Faculty of Health news
+         (https://www.keele.ac.uk/health/facultynews/). Replace with KHP's own items. */
+      news: [
+        { date: "15 April 2025", tag: "Research",
+          title: "New musculoskeletal research programme launches across Staffordshire primary care network",
+          excerpt: "A major new programme aimed at improving outcomes for patients with long-term musculoskeletal conditions is set to launch across twelve GP practices this spring.",
+          url: "https://www.keele.ac.uk/health/facultynews/" },
+        { date: "3 March 2025", tag: "Partnership",
+          title: "Keele secures NIHR funding to expand mental health digital intervention research",
+          excerpt: "Keele University has been awarded significant NIHR funding to develop and evaluate a suite of digital mental health tools co-designed with service users across the region.",
+          url: "https://www.keele.ac.uk/health/facultynews/" },
+        { date: "18 February 2025", tag: "Community",
+          title: "Health innovation event brings together 80 regional partners to shape KHP priorities",
+          excerpt: "Over 80 representatives from NHS trusts, local government, industry, and the voluntary sector came together to co-develop Keele Health Partners' strategic research priorities.",
+          url: "https://www.keele.ac.uk/health/facultynews/" }
+      ],
+
+      /* Add case studies here when available. Empty = "coming soon" placeholder. */
+      caseStudies: []
+    };
+
+    // ── Render engine (no need to edit below) ─────────────────────
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, c =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const arrow = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    function partnerTile(p) {
+      const inner = p.logo
+        ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy">`
+        : `<div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:80px;margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:55px;"></div><span>${esc(p.type || p.name)}</span></div>`;
+      return `<div class="partner-logo-tile" role="listitem" title="${esc(p.name)}">${inner}</div>`;
+    }
+
+    function renderPartners() {
+      const track = document.getElementById('partner-track');
+      const profiles = document.getElementById('profiles-grid');
+      const note = document.getElementById('partners-note');
+      const list = KHP_DATA.partners || [];
+
+      // Logo carousel (duplicated once for a seamless marquee loop)
+      const tiles = list.map(partnerTile).join('');
+      track.innerHTML = tiles + tiles;
+
+      // Profile cards (only partners with a `profile`)
+      const withProfiles = list.filter(p => p.profile && p.profile.trim());
+      if (withProfiles.length) {
+        profiles.innerHTML = withProfiles.map((p, i) => {
+          const logo = p.logo
+            ? `<div class="profile-logo"><img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy"></div>`
+            : `<div class="profile-logo-placeholder" aria-hidden="true">${esc((p.name || '?').charAt(0))}</div>`;
+          const link = p.url
+            ? `<a class="profile-link" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Visit website ${arrow}</a>`
+            : '';
+          return `<article class="profile-card reveal${i % 3 ? ' reveal-delay-' + (i % 3) : ''}">
+            ${logo}
+            <span class="profile-type">${esc(p.type || 'Partner')}</span>
+            <h3 class="profile-name">${esc(p.name)}</h3>
+            <p class="profile-blurb">${esc(p.profile)}</p>
+            ${link}
+          </article>`;
+        }).join('');
+      } else {
+        profiles.innerHTML = `<div class="section-placeholder"><strong>Partner profiles coming soon.</strong><br>Add a <code>profile</code> to any partner in the content config to publish it here.</div>`;
+      }
+
+      // Placeholder note if any partner still lacks a real logo
+      const missingLogos = list.some(p => !p.logo);
+      note.textContent = missingLogos
+        ? 'Some partner logos are placeholders. Confirmed partner logos will be added as they are supplied.'
+        : '';
+    }
+
+    function renderNews() {
+      const grid = document.getElementById('news-grid');
+      const noteWrap = document.getElementById('news-note');
+      const items = KHP_DATA.news || [];
+      const shades = ['teal', 'navy', 'accent'];
+      const icons = [
+        '<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
+        '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>',
+        '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>'
+      ];
+      if (!items.length) {
+        grid.innerHTML = `<div class="section-placeholder"><strong>No news yet.</strong><br>Add items to the <code>news</code> array in the content config.</div>`;
+      } else {
+        grid.innerHTML = items.map((n, i) => {
+          const shade = shades[i % shades.length];
+          const icon = icons[i % icons.length];
+          const link = n.url
+            ? `<a href="${esc(n.url)}" class="news-card-link" target="_blank" rel="noopener noreferrer">Read more ${arrow}</a>`
+            : '';
+          return `<article class="news-card reveal${i % 3 ? ' reveal-delay-' + (i % 3) : ''}">
+            <div class="news-card-img">
+              <div class="news-card-img-placeholder ${shade}"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${icon}</svg></div>
+              ${n.tag ? `<span class="news-card-tag">${esc(n.tag)}</span>` : ''}
+            </div>
+            <div class="news-card-body">
+              <p class="news-card-meta">${esc(n.date)}</p>
+              <h3 class="news-card-title">${esc(n.title)}</h3>
+              <p class="news-card-excerpt">${esc(n.excerpt)}</p>
+              ${link}
+            </div>
+          </article>`;
+        }).join('');
+      }
+      const span = noteWrap.querySelector('span');
+      if (span) span.textContent = 'News items above are placeholder content. Final news will be sourced from KHP’s own feed before launch.';
+    }
+
+    function renderCaseStudies() {
+      const grid = document.getElementById('case-grid');
+      const items = KHP_DATA.caseStudies || [];
+      if (!items.length) {
+        grid.innerHTML = `<div class="section-placeholder"><strong>Case studies are coming soon.</strong><br>We’re gathering success stories from across the partnership. If you have a story to share, <a href="#contact">get in touch</a>.</div>`;
+        return;
+      }
+      grid.innerHTML = items.map((c, i) => {
+        const media = c.image
+          ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">`
+          : `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20v-6M6 20v-4M18 20v-9M3 20h18"/><circle cx="12" cy="7" r="3"/></svg>`;
+        const link = c.url
+          ? `<a href="${esc(c.url)}" class="case-card-link"${/^https?:/.test(c.url) ? ' target="_blank" rel="noopener noreferrer"' : ''}>Read the story ${arrow}</a>`
+          : '';
+        return `<article class="case-card reveal${i % 3 ? ' reveal-delay-' + (i % 3) : ''}">
+          <div class="case-card-media">${media}${c.tag ? `<span class="case-card-tag">${esc(c.tag)}</span>` : ''}</div>
+          <div class="case-card-body">
+            ${c.partner ? `<p class="case-card-partner">${esc(c.partner)}</p>` : ''}
+            <h3 class="case-card-title">${esc(c.title)}</h3>
+            <p class="case-card-summary">${esc(c.summary)}</p>
+            ${link}
+          </div>
+        </article>`;
+      }).join('');
+    }
+
+    renderPartners();
+    renderNews();
+    renderCaseStudies();
+
     // ── Year
     document.getElementById('year').textContent = new Date().getFullYear();
 

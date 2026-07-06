@@ -17,3 +17,7 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# Node dev tooling (BrowserSync)
+node_modules/
+package-lock.json
