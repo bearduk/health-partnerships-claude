@@ -1,6 +1,6 @@
 # Keele Health Partners microsite
 
-Standalone static microsite for Keele Health Partners. Single-page site (`index.html`) with no build step.
+Standalone static microsite for Keele Health Partners. Single-page site (`index.html`) with no compile step.
 
 **Production URL:** `https://www.keele.ac.uk/health-partners/`
 
@@ -11,19 +11,43 @@ npm install
 npm run dev
 ```
 
-BrowserSync serves the site (default `http://localhost:3000`) with live reload on changes to `index.html`, `assets/`, and `sitemap.xml`.
+BrowserSync serves the site from the repo root (default `http://localhost:3000`) with live reload on changes to `index.html`, `assets/`, and `sitemap.xml`.
 
 Use `npm run dev:open` to launch your browser automatically.
 
 OneTrust is suppressed on `localhost` — test cookie consent on staging or production.
 
+## Production build
+
+```bash
+npm run prod
+```
+
+Copies only deployable files into `public/`:
+
+- `index.html`
+- `sitemap.xml`
+- `assets/` (fonts, icons, images, video)
+
+Internal docs (`README.md`, `HANDOFF.md`, `external-microsite-requirements.md`, reports, etc.) are **not** included.
+
+Preview the production folder locally:
+
+```bash
+npm run preview
+```
+
+Serves `public/` only. After editing source files, run `npm run prod` again to refresh.
+
 ## Deploy
 
 ```bash
+npm run prod
+npm run preview   # optional — verify before upload
 ./deploy.sh user@host:/path/to/webroot/health-partners/
 ```
 
-`rsync` pushes static files and excludes `node_modules`, `.git`, and dev tooling.
+`deploy.sh` rsyncs `./public/` to the server. Run `npm run prod` first or deploy will abort.
 
 ## Production URL configuration
 

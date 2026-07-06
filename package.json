@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "dev": "browser-sync start --server --files 'index.html, assets/**/*, sitemap.xml' --no-notify --no-open",
-    "dev:open": "browser-sync start --server --files 'index.html, assets/**/*, sitemap.xml' --no-notify"
+    "dev:open": "browser-sync start --server --files 'index.html, assets/**/*, sitemap.xml' --no-notify",
+    "prod": "node scripts/build.mjs",
+    "preview": "browser-sync start --server --serveStatic public --files 'public/**/*' --no-notify --no-open"
   },
   "devDependencies": {
     "browser-sync": "^3.0.0"

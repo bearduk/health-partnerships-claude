@@ -225,6 +225,7 @@ Minimal example:
 
 - If the site compiles Sass/JS, run the watcher and BrowserSync together (e.g. via `npm-run-all`/`concurrently`) behind the same `npm run dev`.
 - Remember OneTrust is suppressed on localhost (see §1) — verify consent behaviour on staging/live, not just in `npm run dev`.
+- For deploy, provide an `npm run prod` script that copies only live site files (HTML, assets, `sitemap.xml`, etc.) into a `public/` folder — exclude internal docs, dev tooling, and reports. Document `npm run prod` and deploy steps in the README.
 
 ---
 

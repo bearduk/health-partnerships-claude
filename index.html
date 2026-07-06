@@ -35,7 +35,7 @@
   <meta name="author" content="Keele University" />
   <meta name="description" content="Keele Health Partners brings together health, academic, community, and business partners to turn research into real-world health impact across Staffordshire and the North Midlands." />
   <meta name="theme-color" content="#005d8f" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://www.keele.ac.uk/health-partners/" />
   <meta property="og:title" content="Keele Health Partners | Keele University" />
   <meta property="og:description" content="Keele Health Partners brings together health, academic, community, and business partners to turn research into real-world health impact across Staffordshire and the North Midlands." />
@@ -1630,14 +1630,131 @@
       background: revert;
       font-family: Arial, Helvetica, sans-serif;
     }
+
+    /* ============================================================
+       STAGING GATE — remove before public launch
+       ============================================================ */
+    body.staging-locked { overflow: hidden; }
+    body.staging-locked .page-wrap {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .staging-gate {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 25000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #271e3d 0%, #174872 55%, #005d8f 100%);
+    }
+    body.staging-locked .staging-gate { display: flex; }
+
+    .staging-gate-card {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 4vw, 2.25rem);
+      box-shadow: var(--shadow-lift);
+    }
+    .staging-gate-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--keele-blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+    .staging-gate-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--keele-indigo);
+      margin-bottom: 0.5rem;
+    }
+    .staging-gate-intro {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .staging-gate-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .staging-gate-field label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--keele-indigo);
+    }
+    .staging-gate-field input {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--sand);
+      border-radius: var(--radius-sm);
+      color: var(--text-dark);
+    }
+    .staging-gate-field input:focus-visible {
+      outline: 2px solid var(--keele-blue);
+      outline-offset: 2px;
+      border-color: var(--keele-blue);
+    }
+    .staging-gate-error {
+      font-size: 0.85rem;
+      color: #b42318;
+      margin-bottom: 1rem;
+    }
+    .staging-gate-error[hidden] { display: none; }
+    .staging-gate-submit {
+      width: 100%;
+      justify-content: center;
+    }
   </style>
 </head>
-<body>
+<body class="staging-locked">
+
+  <script>
+  (function () {
+    if (/^localhost$|^127\.0\.0\.1$/.test(location.hostname)
+        || sessionStorage.getItem('khp-staging-access') === '1') {
+      document.body.classList.remove('staging-locked');
+      var gate = document.getElementById('staging-gate');
+      if (gate) gate.hidden = true;
+    }
+  })();
+  </script>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WH5D65B"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+  <!-- STAGING GATE — remove before public launch -->
+  <div class="staging-gate" id="staging-gate" role="dialog" aria-modal="true" aria-labelledby="staging-gate-title">
+    <div class="staging-gate-card">
+      <div class="staging-gate-mark" aria-hidden="true">KHP</div>
+      <h1 class="staging-gate-title" id="staging-gate-title">Preview access</h1>
+      <p class="staging-gate-intro">This site is not yet public. Enter the preview password to continue.</p>
+      <form id="staging-gate-form">
+        <div class="staging-gate-field">
+          <label for="staging-password">Password</label>
+          <input type="password" id="staging-password" name="password" autocomplete="current-password" required />
+        </div>
+        <p class="staging-gate-error" id="staging-gate-error" role="alert" hidden>Incorrect password. Please try again.</p>
+        <button type="submit" class="btn btn-primary staging-gate-submit">Continue</button>
+      </form>
+    </div>
+  </div>
 
   <div class="page-wrap">
   <!-- Skip link -->
@@ -2247,6 +2364,32 @@
        placeholder instead of the grid.
        ============================================================ -->
   <script>
+    // STAGING GATE — remove this block before public launch
+    (function () {
+      const STAGING_PASSWORD = 'health';
+      const STORAGE_KEY = 'khp-staging-access';
+      const isLocal = /^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+      const form = document.getElementById('staging-gate-form');
+      const input = document.getElementById('staging-password');
+      const error = document.getElementById('staging-gate-error');
+
+      if (!form || isLocal || sessionStorage.getItem(STORAGE_KEY) === '1') return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (input.value === STAGING_PASSWORD) {
+          sessionStorage.setItem(STORAGE_KEY, '1');
+          document.body.classList.remove('staging-locked');
+          document.getElementById('staging-gate').hidden = true;
+          error.hidden = true;
+          return;
+        }
+        error.hidden = false;
+        input.focus();
+        input.select();
+      });
+    })();
+
     const KHP_DATA = {
       partners: [
         { name: "Keele University", type: "Founding Partner", logo: "", url: "https://www.keele.ac.uk",

@@ -25,6 +25,8 @@ The site is **technically ready for staging** per [`external-microsite-requireme
 
 **Before production:** confirm OneTrust and GTM IDs with the web team; test consent on staging.
 
+**Staging gate (temporary):** The site is password-protected (`health`) on staging/production until launch. `noindex, nofollow` is set. Before go-live: remove the staging gate HTML/CSS/JS from `index.html`, restore `<meta name="robots" content="index, follow">`, and run `npm run prod`.
+
 ---
 
 ## What was done in the content pass
