@@ -884,6 +884,16 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
+    .partner-placeholder-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--sand);
+    }
+    .partner-logo-tile--empty {
+      border-style: dashed;
+      background: rgba(255,255,255,0.65);
+      pointer-events: none;
+    }
 
     /* Static row when too few partners for a marquee */
     .partner-track-wrap.is-static {
@@ -2279,28 +2289,42 @@
       return `<div class="partner-logo-tile" role="listitem" title="${esc(p.name)}">${inner}</div>`;
     }
 
+    function emptyPartnerSlot() {
+      // Anonymous layout filler — no invented organisation names.
+      return `<div class="partner-logo-tile partner-logo-tile--empty" aria-hidden="true">
+        <div class="partner-placeholder">
+          <div class="partner-placeholder-bar" style="width:80px;margin-bottom:4px;"></div>
+          <div class="partner-placeholder-bar" style="width:55px;"></div>
+        </div>
+      </div>`;
+    }
+
     function renderPartners() {
       const track = document.getElementById('partner-track');
       const trackWrap = document.getElementById('partner-track-wrap');
       const profiles = document.getElementById('profiles-grid');
       const srList = document.getElementById('partner-sr-list');
       const list = KHP_DATA.partners || [];
+      /* Pad the logo strip with empty slots so the layout reads as a full
+         partner row until Christian confirms the final list. */
+      const MIN_LOGO_SLOTS = 6;
 
-      // Screen-reader list of partner names (marquee is decorative)
+      // Screen-reader list of partner names only (empty slots are decorative)
       if (srList) {
         srList.innerHTML = list.map(p => `<li>${esc(p.name)}</li>`).join('');
       }
 
-      // Logo row: marquee only when there are enough partners; otherwise a static row.
-      // Never invent greyscale logo bars — show the organisation name until a real logo arrives.
       if (!list.length) {
         track.innerHTML = '';
         trackWrap.classList.add('is-empty');
         trackWrap.classList.remove('is-static');
       } else {
         trackWrap.classList.remove('is-empty');
-        const tiles = list.map(partnerTile).join('');
-        const useMarquee = list.length >= 4;
+        const realTiles = list.map(partnerTile);
+        const emptyCount = Math.max(0, MIN_LOGO_SLOTS - realTiles.length);
+        const tiles = realTiles.concat(Array.from({ length: emptyCount }, emptyPartnerSlot)).join('');
+        // Marquee once the strip is populated enough to read as a logo row
+        const useMarquee = realTiles.length + emptyCount >= 4;
         track.innerHTML = useMarquee ? tiles + tiles : tiles;
         trackWrap.classList.toggle('is-static', !useMarquee);
       }
