@@ -351,7 +351,7 @@
       flex-shrink: 0;
     }
     .nav-logo-text { display: flex; flex-direction: column; }
-    .nav-logo-name { font-size: 1rem; font-weight: 400; color: #fff; }
+    .nav-logo-name { font-size: 1.05rem; font-weight: 600; color: #fff; letter-spacing: 0.01em; }
     .nav-logo-sub  { font-family: var(--font-body); font-size: 0.68rem; font-weight: 400; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; }
 
     .nav-links {
@@ -867,20 +867,40 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 4px;
       text-align: center;
     }
-    .partner-placeholder-bar {
-      height: 6px;
-      border-radius: 3px;
-      background: var(--sand);
+    .partner-placeholder-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.01em;
+      line-height: 1.3;
     }
-    .partner-placeholder span {
+    .partner-placeholder-type {
       font-size: 0.62rem;
       color: var(--text-light);
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
+
+    /* Static row when too few partners for a marquee */
+    .partner-track-wrap.is-static {
+      margin-inline: 0;
+      overflow: visible;
+    }
+    .partner-track-wrap.is-static::before,
+    .partner-track-wrap.is-static::after { display: none; }
+    .partner-track-wrap.is-static .partner-track {
+      animation: none;
+      width: auto;
+      max-width: 100%;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding-inline: clamp(20px, 5vw, 48px);
+    }
+    .partner-track-wrap.is-empty { display: none; }
 
     /* Partner logo image (real logos, when supplied) */
     .partner-logo-tile img {
@@ -1308,9 +1328,10 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
+      grid-template-columns: 1fr;
       gap: clamp(40px,6vw,80px);
       align-items: start;
+      max-width: 40rem;
     }
 
     .contact-left {}
@@ -1324,7 +1345,7 @@
     .contact-ways { display: flex; flex-direction: column; gap: 1rem; }
     .contact-way {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 1rem;
       padding: 1rem 1.25rem;
       background: rgba(255,255,255,0.05);
@@ -1344,6 +1365,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      margin-top: 0.15rem;
     }
     .contact-way-icon svg { color: var(--accent-on-dark); }
     .contact-way-text {}
@@ -1359,85 +1381,29 @@
       font-size: 0.9375rem;
       color: var(--text-on-dark-secondary);
       font-weight: 500;
-    }
-
-    .contact-right {}
-
-    .ms-form-wrapper {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-    }
-
-    .ms-form-note {
-      font-size: 0.82rem;
-      color: var(--text-on-dark-label);
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    /* Placeholder form (MS Form embed area) */
-    .form-placeholder {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-field { display: flex; flex-direction: column; gap: 0.5rem; }
-    .form-field label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-on-dark-label);
-      letter-spacing: 0.03em;
-    }
-    .form-field input,
-    .form-field select,
-    .form-field textarea {
-      background: var(--input-bg-on-dark);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-sm);
-      padding: 0.75rem 1rem;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: #fff;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-      width: 100%;
-    }
-    .form-field input::placeholder,
-    .form-field textarea::placeholder { color: var(--placeholder-on-dark); }
-    .form-field select option { background: var(--navy); color: #fff; }
-    .form-field input:focus,
-    .form-field select:focus,
-    .form-field textarea:focus {
-      border-color: var(--teal);
-      background: rgba(255,255,255,0.1);
-      box-shadow: 0 0 0 3px rgba(0,93,143,0.2);
-    }
-    .form-field input:focus-visible,
-    .form-field select:focus-visible,
-    .form-field textarea:focus-visible {
-      outline: 2px solid var(--accent-on-dark);
-      outline-offset: 2px;
-    }
-    .form-field textarea { resize: vertical; min-height: 110px; }
-
-    .form-submit {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-    .form-privacy {
-      font-size: 0.78rem;
-      color: var(--text-on-dark-subtle);
       line-height: 1.5;
     }
-    .form-privacy a { color: var(--text-on-dark-muted); text-decoration: underline; }
-    .form-privacy a:hover { color: var(--text-on-dark-secondary); }
+    .contact-way-email {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--accent-on-dark);
+      text-decoration: none;
+    }
+    .contact-way-email:hover { text-decoration: underline; }
+    .contact-way-email:focus-visible {
+      outline: 2px solid var(--accent-on-dark);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .contact-way-temp {
+      margin-top: 0.65rem;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--text-on-dark-label);
+      font-style: italic;
+    }
 
     /* ============================================================
        FOOTER
@@ -1576,7 +1542,6 @@
 
     @media (max-width: 680px) {
       .news-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .partners-header-row { flex-direction: column; align-items: flex-start; }
       .news-header-row { flex-direction: column; align-items: flex-start; }
@@ -1767,6 +1732,7 @@
   <nav class="nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="#" class="nav-logo">
+        <!-- TODO: Official KHP branding/logo pending — temporary text badge only; do not invent a logo. -->
         <div class="nav-logo-mark" aria-hidden="true">KHP</div>
         <div class="nav-logo-text">
           <span class="nav-logo-name">Keele Health Partners</span>
@@ -1778,9 +1744,7 @@
         <li><a href="#mission">About</a></li>
         <li><a href="#research">Research</a></li>
         <li><a href="#partners">Partners</a></li>
-        <li><a href="#case-studies">Case studies</a></li>
         <li><a href="#news">News</a></li>
-        <li><a href="#team">Team</a></li>
       </ul>
 
       <a href="#contact" class="btn btn-primary nav-cta">Work with us</a>
@@ -1796,9 +1760,7 @@
     <a href="#mission" class="mobile-nav-link">About</a>
     <a href="#research" class="mobile-nav-link">Research</a>
     <a href="#partners" class="mobile-nav-link">Partners</a>
-    <a href="#case-studies" class="mobile-nav-link">Case studies</a>
     <a href="#news" class="mobile-nav-link">News</a>
-    <a href="#team" class="mobile-nav-link">Team</a>
     <a href="#contact" class="btn btn-primary mobile-nav-link">Work with us</a>
   </div>
   </header>
@@ -1810,7 +1772,7 @@
 
     <noscript>
       <div style="background:var(--keele-gold-pale);color:var(--navy);padding:1rem clamp(20px,5vw,48px);text-align:center;font-size:0.9rem;">
-        The Partners, News and Case studies sections need JavaScript to display their content. Please enable JavaScript for the full experience.
+        The Partners and News sections need JavaScript to display their content. Please enable JavaScript for the full experience.
       </div>
     </noscript>
 
@@ -1826,15 +1788,16 @@
       <div class="container hero-content">
         <div class="hero-kicker">
           <span class="hero-kicker-dot" aria-hidden="true"></span>
-          Health Innovation · Staffordshire &amp; North Midlands
+          Keele University · Health Innovation · Staffordshire &amp; North Midlands
         </div>
         <h1 id="hero-heading">
           Turning research<br>into <em>real-world</em><br>health impact
         </h1>
         <p class="hero-intro">
-          Keele Health Partners brings together the NHS, academia, business,
-          and community to accelerate discoveries into care — building healthier
-          communities and a stronger regional health economy.
+          A Keele University partnership — Keele Health Partners brings together
+          the NHS, academia, business, and community to accelerate discoveries
+          into care — building healthier communities and a stronger regional
+          health economy.
         </p>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">
@@ -2037,13 +2000,10 @@
       </div>
 
       <!-- Logo carousel — rendered from KHP_DATA.partners (see config script near end of file). -->
+      <!-- TODO: Partner names/logos awaiting confirmation from Christian — do not invent entries. -->
       <ul class="visually-hidden" id="partner-sr-list" role="list"></ul>
-      <div class="partner-track-wrap" aria-hidden="true" role="presentation">
+      <div class="partner-track-wrap" id="partner-track-wrap" aria-hidden="true" role="presentation">
         <div class="partner-track" id="partner-track"><!-- populated by JS --></div>
-      </div>
-
-      <div class="container">
-        <p class="data-note" id="partners-note" role="note"></p>
       </div>
     </section>
 
@@ -2106,7 +2066,7 @@
             <span class="section-label">Latest news</span>
             <h2 class="section-heading" id="news-heading">From across the partnership</h2>
           </div>
-          <a href="https://www.keele.ac.uk/health/facultynews/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-navy reveal reveal-delay-1">
+          <a href="https://www.keele.ac.uk/health/facultynews/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-navy reveal reveal-delay-1" id="news-all-cta" hidden>
             All news
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -2115,69 +2075,18 @@
         <!-- News grid — rendered from KHP_DATA.news (see config script near end of file). -->
         <div class="news-grid" id="news-grid"><!-- populated by JS --></div>
 
-        <div class="news-placeholder-note" id="news-note" role="note">
+        <div class="news-placeholder-note" id="news-note" role="note" hidden>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
           <span></span>
         </div>
       </div>
     </section>
 
-    <!-- CASE STUDIES / SUCCESS STORIES -->
-    <section class="case-studies" id="case-studies" aria-labelledby="case-heading">
-      <div class="container">
-        <div class="news-header-row">
-          <div class="reveal">
-            <span class="section-label">Case studies</span>
-            <h2 class="section-heading" id="case-heading">Success stories from our partnership</h2>
-          </div>
-          <a href="#contact" class="btn btn-outline-navy reveal reveal-delay-1">
-            Share your story
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+    <!-- TODO: Team section (bios/photos) not ready for launch — restore when
+         Christian confirms team members, roles, bios, and headshots. -->
 
-        <!-- Case study grid — rendered from KHP_DATA.caseStudies (see config script near end of file). -->
-        <div class="case-grid" id="case-grid"><!-- populated by JS --></div>
-      </div>
-    </section>
-
-    <!-- TEAM -->
-    <section class="team" id="team" aria-labelledby="team-heading">
-      <div class="container">
-        <div class="reveal">
-          <span class="section-label">Our team</span>
-          <h2 class="section-heading" id="team-heading">The people behind KHP</h2>
-          <p class="section-sub">Our team brings together expertise from across health research, clinical practice, and strategic partnership development.</p>
-        </div>
-
-        <div class="team-grid">
-
-          <div class="team-card reveal reveal-delay-1">
-            <div class="team-card-photo">
-              <div class="team-photo-placeholder" aria-hidden="true">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
-            </div>
-            <div class="team-card-body">
-              <h3 class="team-card-name">Christian Mallen</h3>
-              <p class="team-card-role">[Role / Title — placeholder]</p>
-              <p class="team-card-bio">
-                [Bio text to be supplied. Placeholder content only — final bio, role title, and headshot required before production launch.]
-              </p>
-              <a href="mailto:placeholder@keele.ac.uk" class="team-card-email">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Contact Christian
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-        <p class="team-placeholder-note">
-          Further team members will be added as KHP's team grows. Headshots, final bios, and contact details required before launch.
-        </p>
-      </div>
-    </section>
+    <!-- TODO: Case studies section deferred until real success stories are
+         available. Re-add via content config when ready; do not invent stories. -->
 
     <!-- CONTACT -->
     <section class="contact" id="contact" aria-labelledby="contact-heading">
@@ -2194,13 +2103,20 @@
             </p>
 
             <div class="contact-ways">
+              <!-- TODO: Replace Ben Coleman temporary contact with generic khp@keele.ac.uk once that address is available. -->
               <div class="contact-way">
                 <div class="contact-way-icon" aria-hidden="true">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </div>
                 <div class="contact-way-text">
-                  <div class="contact-way-label">Email</div>
-                  <div class="contact-way-value">[khp@keele.ac.uk — placeholder]</div>
+                  <div class="contact-way-label">Contact</div>
+                  <div class="contact-way-value">
+                    Ben Coleman<br>
+                    Development Manager, Impact &amp; Partnerships<br>
+                    (Medicine, Health &amp; Life Sciences)
+                  </div>
+                  <a class="contact-way-email" href="mailto:b.coleman@keele.ac.uk">b.coleman@keele.ac.uk</a>
+                  <p class="contact-way-temp">Temporary contact — a dedicated KHP inbox will replace this when available.</p>
                 </div>
               </div>
 
@@ -2216,60 +2132,8 @@
             </div>
           </div>
 
-          <div class="contact-right reveal reveal-delay-2">
-            <div class="ms-form-wrapper">
-              <p class="ms-form-note">
-                ⚠ This form is a design placeholder. Final implementation will use a Microsoft Form embed. Submission workflow and destination to be confirmed.
-              </p>
-
-              <form class="form-placeholder" action="#" aria-label="Partnership enquiry form" onsubmit="return false;">
-                <div class="form-row">
-                  <div class="form-field">
-                    <label for="f-name">Your name</label>
-                    <input type="text" id="f-name" name="name" autocomplete="name" placeholder="Full name" />
-                  </div>
-                  <div class="form-field">
-                    <label for="f-org">Organisation</label>
-                    <input type="text" id="f-org" name="org" autocomplete="organization" placeholder="Organisation name" />
-                  </div>
-                </div>
-
-                <div class="form-field">
-                  <label for="f-email">Email address</label>
-                  <input type="email" id="f-email" name="email" autocomplete="email" placeholder="your@email.ac.uk" />
-                </div>
-
-                <div class="form-field">
-                  <label for="f-interest">Area of interest</label>
-                  <select id="f-interest" name="interest">
-                    <option value="" disabled selected>Select a research area</option>
-                    <option>Mental Health</option>
-                    <option>Life Sciences &amp; Precision Medicine</option>
-                    <option>Healthy Ageing &amp; Long-Term Conditions</option>
-                    <option>Technology, Digital Health &amp; Data Innovation</option>
-                    <option>Training &amp; Workforce Development</option>
-                    <option>Community &amp; Public Partnerships</option>
-                    <option>General enquiry</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="f-message">Message</label>
-                  <textarea id="f-message" name="message" placeholder="Tell us about your organisation and what you're hoping to explore with KHP..."></textarea>
-                </div>
-
-                <div class="form-submit">
-                  <p class="form-privacy">
-                    Your data will be handled in accordance with our <a href="https://www.keele.ac.uk/privacy/">privacy policy</a>.
-                  </p>
-                  <button type="submit" class="btn btn-primary">
-                    Send enquiry
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+          <!-- TODO: Contact form / Microsoft Form embed deferred — restore when
+               submission workflow and destination are confirmed. -->
 
         </div>
       </div>
@@ -2286,6 +2150,7 @@
 
         <div class="footer-brand">
           <div class="footer-logo" aria-label="Keele Health Partners">
+            <!-- TODO: Official KHP branding/logo pending — temporary text badge only; do not invent a logo. -->
             <div class="footer-logo-mark" aria-hidden="true">KHP</div>
             <span class="footer-logo-name">Keele Health Partners</span>
           </div>
@@ -2305,11 +2170,9 @@
             <li><a href="#research">Research areas</a></li>
             <li><a href="#partners">Our partners</a></li>
             <li><a href="#partner-profiles">Partner profiles</a></li>
-            <li><a href="#case-studies">Case studies</a></li>
             <li><a href="#public-partnerships">Public partnerships</a></li>
             <li><a href="#training">Training</a></li>
             <li><a href="#news">News</a></li>
-            <li><a href="#team">Our team</a></li>
             <li><a href="#contact">Work with us</a></li>
           </ul>
         </div>
@@ -2341,9 +2204,9 @@
   <!-- ============================================================
        CONTENT CONFIG  ·  EDIT THIS BLOCK TO ADD CONTENT
        ------------------------------------------------------------
-       The web team can add partners, news and case studies by
-       editing the arrays below — the page rebuilds these sections
-       automatically. No other code needs to change.
+       The web team can add partners and news by editing the arrays
+       below — the page rebuilds these sections automatically. No
+       other code needs to change.
 
        • To add a PARTNER: copy one { ... } line in `partners`.
          - name    : organisation name (required)
@@ -2353,15 +2216,14 @@
          - url     : link to the partner's website ("" for none)
          - profile : 1–2 sentence description. If provided, a card also
                      appears in the "Partner profiles" section.
+         Do not invent partners — only add names confirmed by Christian.
 
        • To add a NEWS item: copy one { ... } line in `news`.
          - date, title, excerpt, tag ("Research"/"Partnership"/…), url
+         Leave `news: []` empty until real KHP items are available.
 
-       • To add a CASE STUDY: copy one { ... } line in `caseStudies`.
-         - title, partner, summary, tag, url, image ("" for none)
-
-       Leaving `caseStudies: []` empty shows a friendly "coming soon"
-       placeholder instead of the grid.
+       TODO: Case studies can return later as a `caseStudies` array +
+       section when real success stories are confirmed.
        ============================================================ -->
   <script>
     // STAGING GATE — remove this block before public launch
@@ -2391,36 +2253,18 @@
     })();
 
     const KHP_DATA = {
+      /* TODO: Partner names and logos awaiting confirmation from Christian.
+         Do not invent or guess partner organisations. Append confirmed
+         partners below (copy the Keele entry shape). Leave logo: "" until
+         a real logo file is supplied in assets/partners/. */
       partners: [
         { name: "Keele University", type: "Founding Partner", logo: "", url: "https://www.keele.ac.uk",
-          profile: "Founding partner of KHP, bringing internationally recognised strengths in musculoskeletal health, primary care, pharmacy and digital innovation through its Faculty of Medicine and Health Sciences." },
-        /* ↓↓↓ PLACEHOLDER partners — replace names/logos with confirmed KHP members ↓↓↓ */
-        { name: "Regional NHS Trust", type: "NHS Trust", logo: "", url: "", profile: "" },
-        { name: "Integrated Care Board", type: "ICB", logo: "", url: "", profile: "" },
-        { name: "NHS Foundation Trust", type: "NHS Foundation Trust", logo: "", url: "", profile: "" },
-        { name: "Industry Partner", type: "Industry", logo: "", url: "", profile: "" },
-        { name: "Community Organisation", type: "Community", logo: "", url: "", profile: "" }
+          profile: "Founding partner of KHP, bringing internationally recognised strengths in musculoskeletal health, primary care, pharmacy and digital innovation through its Faculty of Medicine and Health Sciences." }
       ],
 
-      /* PLACEHOLDER news — styled to mirror Keele Faculty of Health news
-         (https://www.keele.ac.uk/health/facultynews/). Replace with KHP's own items. */
-      news: [
-        { date: "15 April 2025", tag: "Research",
-          title: "New musculoskeletal research programme launches across Staffordshire primary care network",
-          excerpt: "A major new programme aimed at improving outcomes for patients with long-term musculoskeletal conditions is set to launch across twelve GP practices this spring.",
-          url: "https://www.keele.ac.uk/health/facultynews/" },
-        { date: "3 March 2025", tag: "Partnership",
-          title: "Keele secures NIHR funding to expand mental health digital intervention research",
-          excerpt: "Keele University has been awarded significant NIHR funding to develop and evaluate a suite of digital mental health tools co-designed with service users across the region.",
-          url: "https://www.keele.ac.uk/health/facultynews/" },
-        { date: "18 February 2025", tag: "Community",
-          title: "Health innovation event brings together 80 regional partners to shape KHP priorities",
-          excerpt: "Over 80 representatives from NHS trusts, local government, industry, and the voluntary sector came together to co-develop Keele Health Partners' strategic research priorities.",
-          url: "https://www.keele.ac.uk/health/facultynews/" }
-      ],
-
-      /* Add case studies here when available. Empty = "coming soon" placeholder. */
-      caseStudies: []
+      /* TODO: Real KHP news items required before showing articles.
+         Leave empty until confirmed content is available — do not fabricate. */
+      news: []
     };
 
     // ── Render engine (no need to edit below) ─────────────────────
@@ -2431,14 +2275,14 @@
     function partnerTile(p) {
       const inner = p.logo
         ? `<img src="${esc(p.logo)}" alt="${esc(p.name)} logo" loading="lazy">`
-        : `<div class="partner-placeholder"><div class="partner-placeholder-bar" style="width:80px;margin-bottom:4px;"></div><div class="partner-placeholder-bar" style="width:55px;"></div><span>${esc(p.type || p.name)}</span></div>`;
+        : `<div class="partner-placeholder"><span class="partner-placeholder-name">${esc(p.name)}</span>${p.type ? `<span class="partner-placeholder-type">${esc(p.type)}</span>` : ''}</div>`;
       return `<div class="partner-logo-tile" role="listitem" title="${esc(p.name)}">${inner}</div>`;
     }
 
     function renderPartners() {
       const track = document.getElementById('partner-track');
+      const trackWrap = document.getElementById('partner-track-wrap');
       const profiles = document.getElementById('profiles-grid');
-      const note = document.getElementById('partners-note');
       const srList = document.getElementById('partner-sr-list');
       const list = KHP_DATA.partners || [];
 
@@ -2447,9 +2291,19 @@
         srList.innerHTML = list.map(p => `<li>${esc(p.name)}</li>`).join('');
       }
 
-      // Logo carousel (duplicated once for a seamless marquee loop)
-      const tiles = list.map(partnerTile).join('');
-      track.innerHTML = tiles + tiles;
+      // Logo row: marquee only when there are enough partners; otherwise a static row.
+      // Never invent greyscale logo bars — show the organisation name until a real logo arrives.
+      if (!list.length) {
+        track.innerHTML = '';
+        trackWrap.classList.add('is-empty');
+        trackWrap.classList.remove('is-static');
+      } else {
+        trackWrap.classList.remove('is-empty');
+        const tiles = list.map(partnerTile).join('');
+        const useMarquee = list.length >= 4;
+        track.innerHTML = useMarquee ? tiles + tiles : tiles;
+        trackWrap.classList.toggle('is-static', !useMarquee);
+      }
 
       // Profile cards (only partners with a `profile`)
       const withProfiles = list.filter(p => p.profile && p.profile.trim());
@@ -2470,19 +2324,14 @@
           </article>`;
         }).join('');
       } else {
-        profiles.innerHTML = `<div class="section-placeholder"><strong>Partner profiles coming soon.</strong><br>Add a <code>profile</code> to any partner in the content config to publish it here.</div>`;
+        profiles.innerHTML = `<div class="section-placeholder"><strong>Partner profiles coming soon.</strong><br>Confirmed partners will appear here once names and profiles are supplied.</div>`;
       }
-
-      // Placeholder note if any partner still lacks a real logo
-      const missingLogos = list.some(p => !p.logo);
-      note.textContent = missingLogos
-        ? 'Some partner logos are placeholders. Confirmed partner logos will be added as they are supplied.'
-        : '';
     }
 
     function renderNews() {
       const grid = document.getElementById('news-grid');
       const noteWrap = document.getElementById('news-note');
+      const allCta = document.getElementById('news-all-cta');
       const items = KHP_DATA.news || [];
       const shades = ['teal', 'navy', 'accent'];
       const icons = [
@@ -2491,52 +2340,28 @@
         '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>'
       ];
       if (!items.length) {
-        grid.innerHTML = `<div class="section-placeholder"><strong>No news yet.</strong><br>Add items to the <code>news</code> array in the content config.</div>`;
-      } else {
-        grid.innerHTML = items.map((n, i) => {
-          const shade = shades[i % shades.length];
-          const icon = icons[i % icons.length];
-          const link = n.url
-            ? `<a href="${esc(n.url)}" class="news-card-link" target="_blank" rel="noopener noreferrer">Read more ${arrow}</a>`
-            : '';
-          return `<article class="news-card reveal${i % 3 ? ' reveal-delay-' + (i % 3) : ''}">
-            <div class="news-card-img">
-              <div class="news-card-img-placeholder ${shade}"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${icon}</svg></div>
-              ${n.tag ? `<span class="news-card-tag">${esc(n.tag)}</span>` : ''}
-            </div>
-            <div class="news-card-body">
-              <p class="news-card-meta">${esc(n.date)}</p>
-              <h3 class="news-card-title">${esc(n.title)}</h3>
-              <p class="news-card-excerpt">${esc(n.excerpt)}</p>
-              ${link}
-            </div>
-          </article>`;
-        }).join('');
-      }
-      const span = noteWrap.querySelector('span');
-      if (span) span.textContent = 'News items above are placeholder content. Final news will be sourced from KHP’s own feed before launch.';
-    }
-
-    function renderCaseStudies() {
-      const grid = document.getElementById('case-grid');
-      const items = KHP_DATA.caseStudies || [];
-      if (!items.length) {
-        grid.innerHTML = `<div class="section-placeholder"><strong>Case studies are coming soon.</strong><br>We’re gathering success stories from across the partnership. If you have a story to share, <a href="#contact">get in touch</a>.</div>`;
+        grid.innerHTML = `<div class="section-placeholder"><strong>News coming soon.</strong><br>Updates from across the partnership will appear here. Add items to the <code>news</code> array in the content config when ready.</div>`;
+        if (noteWrap) noteWrap.hidden = true;
+        if (allCta) allCta.hidden = true;
         return;
       }
-      grid.innerHTML = items.map((c, i) => {
-        const media = c.image
-          ? `<img src="${esc(c.image)}" alt="${esc(c.title)}" loading="lazy">`
-          : `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20v-6M6 20v-4M18 20v-9M3 20h18"/><circle cx="12" cy="7" r="3"/></svg>`;
-        const link = c.url
-          ? `<a href="${esc(c.url)}" class="case-card-link"${/^https?:/.test(c.url) ? ' target="_blank" rel="noopener noreferrer"' : ''}>Read the story ${arrow}</a>`
+      if (noteWrap) noteWrap.hidden = true;
+      if (allCta) allCta.hidden = false;
+      grid.innerHTML = items.map((n, i) => {
+        const shade = shades[i % shades.length];
+        const icon = icons[i % icons.length];
+        const link = n.url
+          ? `<a href="${esc(n.url)}" class="news-card-link" target="_blank" rel="noopener noreferrer">Read more ${arrow}</a>`
           : '';
-        return `<article class="case-card reveal${i % 3 ? ' reveal-delay-' + (i % 3) : ''}">
-          <div class="case-card-media">${media}${c.tag ? `<span class="case-card-tag">${esc(c.tag)}</span>` : ''}</div>
-          <div class="case-card-body">
-            ${c.partner ? `<p class="case-card-partner">${esc(c.partner)}</p>` : ''}
-            <h3 class="case-card-title">${esc(c.title)}</h3>
-            <p class="case-card-summary">${esc(c.summary)}</p>
+        return `<article class="news-card reveal${i % 3 ? ' reveal-delay-' + (i % 3) : ''}">
+          <div class="news-card-img">
+            <div class="news-card-img-placeholder ${shade}"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">${icon}</svg></div>
+            ${n.tag ? `<span class="news-card-tag">${esc(n.tag)}</span>` : ''}
+          </div>
+          <div class="news-card-body">
+            <p class="news-card-meta">${esc(n.date)}</p>
+            <h3 class="news-card-title">${esc(n.title)}</h3>
+            <p class="news-card-excerpt">${esc(n.excerpt)}</p>
             ${link}
           </div>
         </article>`;
@@ -2545,7 +2370,6 @@
 
     renderPartners();
     renderNews();
-    renderCaseStudies();
 
     // ── Year
     document.getElementById('year').textContent = new Date().getFullYear();
