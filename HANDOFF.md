@@ -1,7 +1,21 @@
 # Keele Health Partners microsite — production pass handoff
 
-**Date:** 6 July 2026 (content pass) · 6 July 2026 (compliance pass) · 10 August 2026 (Ben review content trim)
-**Files:** `index.html` (single-file static site), `sitemap.xml`, `assets/`, `README.md`
+**Date:** 6 July 2026 (content pass) · 6 July 2026 (compliance pass) · 10 August 2026 (Ben review content trim) · 11 September 2026 (coming-soon launch page)
+**Files:** `index.html` (now the lean coming-soon homepage), `index.full.html` (the full multi-section build, preserved for the 2027 launch — **not** deployed), `sitemap.xml`, `assets/`, `README.md`
+
+---
+
+## Launch status — coming-soon homepage (11 September 2026)
+
+**Why:** an MRC application references Keele Health Partners, so KHP needs a public, findable page now. The full site isn't ready, so `index.html` was replaced with a lean single-screen "**Launching early 2027**" homepage.
+
+**What the live page now contains:** the launch line, the approved KHP description (About us copy), a preview notice explaining limited content, a temporary enquiries contact (Ben Coleman), and a Keele-attributed footer. Keele branding, self-hosted fonts, OneTrust consent, GTM, favicons, OG/Twitter/canonical metadata and JSON-LD organisation schema are all retained.
+
+**Made findable on Google (the key change):** `<meta name="robots">` is now **`index, follow`** (was `noindex, nofollow`) and the **staging password gate has been removed**. For it to actually appear in search it must be **publicly hosted at a real URL** — deploy `public/` to `https://www.keele.ac.uk/health-partners/` (matches the canonical). Being on the Keele domain, OneTrust/GTM are appropriate and were kept.
+
+**The full build is safe.** The complete multi-section version (partners config, research, news, etc.) is preserved as `index.full.html` and is excluded from the deploy (`scripts/build.mjs` only ships `index.html` + `sitemap.xml` + `assets/`). To resume full-site work later, promote `index.full.html` back to `index.html`.
+
+**To deploy:** `npm run prod` → upload the contents of `public/` to the Keele web space for `/health-partners/`.
 
 ---
 
